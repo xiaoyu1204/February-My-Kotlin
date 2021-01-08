@@ -1,11 +1,12 @@
-package com.shop.ui.home
+package com.shop.ui.home.fragment
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -18,11 +19,9 @@ import com.shop.R
 import com.shop.adapter.home.*
 import com.shop.model.bean.home.*
 import com.youth.banner.loader.ImageLoader
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_category_item.view.*
-import kotlinx.android.synthetic.main.layout_channel_item.*
 import kotlinx.android.synthetic.main.layout_channel_item.view.*
-import kotlinx.android.synthetic.main.layout_channel_item.view.channel_img
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -32,11 +31,12 @@ import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class HomeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+class HomeFragment : Fragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //TODO 协程  挂起的状态
         loadHomeData()
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     //显示banner           名字   :    类型
@@ -58,13 +58,13 @@ class HomeActivity : AppCompatActivity() {
     //显示品牌制作商直供
     private fun showBrand(brand : List<Brand>){
         //网格布局
-        recy_brand!!.layoutManager = GridLayoutManager(this,2)
+        recy_brand!!.layoutManager = GridLayoutManager(activity,2)
         //val 不可变参数
         val brandlist = arrayListOf<Brand>()
         //添加值
         brandlist.addAll(brand)
         //设置适配器
-        val homeBrandAdapter = HomeBrandAdapter(brandlist, this)
+        val homeBrandAdapter = HomeBrandAdapter(brandlist, activity)
         //绑定适配器
         recy_brand.adapter = homeBrandAdapter
     }
@@ -72,13 +72,13 @@ class HomeActivity : AppCompatActivity() {
     //显示新品首发
     private fun showNewGoods(newgoods:List<NewGoods>){
         //网格布局
-        recy_newgood!!.layoutManager = GridLayoutManager(this,2)
+        recy_newgood!!.layoutManager = GridLayoutManager(activity,2)
         //val 不可变参数
         val newgoodslist = arrayListOf<NewGoods>()
         //添加值
         newgoodslist.addAll(newgoods)
         //设置适配器
-        val homeNewGoodsAdapter = HomeNewGoodsAdapter(newgoodslist, this)
+        val homeNewGoodsAdapter = HomeNewGoodsAdapter(newgoodslist, activity)
         //绑定适配器
         recy_newgood.adapter = homeNewGoodsAdapter
     }
@@ -86,15 +86,15 @@ class HomeActivity : AppCompatActivity() {
     //显示人气推荐
     private fun showHotGoods(hotgoods:List<HotGoods>){
         //线性布局
-        recy_hotgoods.layoutManager = LinearLayoutManager(this)
+        recy_hotgoods.layoutManager = LinearLayoutManager(activity)
         //分割线
-        recy_hotgoods!!.addItemDecoration(DividerItemDecoration(this,LinearLayout.VERTICAL))
+        recy_hotgoods!!.addItemDecoration(DividerItemDecoration(activity, LinearLayout.VERTICAL))
         //val 不可变参数
         val hotgoodslist = arrayListOf<HotGoods>()
         //添加值
         hotgoodslist.addAll(hotgoods)
         //设置适配器
-        val homeHotGoodsAdapter = HomeHotGoodsAdapter(hotgoodslist, this)
+        val homeHotGoodsAdapter = HomeHotGoodsAdapter(hotgoodslist, activity)
         //绑定适配器
         recy_hotgoods.adapter = homeHotGoodsAdapter
     }
@@ -102,13 +102,13 @@ class HomeActivity : AppCompatActivity() {
     //显示专题精选
     private fun showTopic(topic:List<Topic>){
         //横向线性
-        recy_topic!!.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        recy_topic!!.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         //val 不可变参数
         val topiclist = arrayListOf<Topic>()
         //添加值
         topiclist.addAll(topic)
         //设置适配器
-        val homeTopicAdapter = HomeTopicAdapter(topiclist, this)
+        val homeTopicAdapter = HomeTopicAdapter(topiclist, activity)
         //绑定适配器
         recy_topic.adapter = homeTopicAdapter
     }
@@ -124,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
         //  in修饰  从i开始  到  indices(个数) == size
         for (i in channel.indices){
             //找布局
-            val inflate = LayoutInflater.from(this).inflate(R.layout.layout_channel_item, null)
+            val inflate = LayoutInflater.from(activity).inflate(R.layout.layout_channel_item, null)
             //赋值
             inflate.channel_name!!.text = channel!!.get(i)!!.name
             Glide.with(this).load(channel!!.get(i)!!.icon_url).into(inflate.channel_img)
@@ -142,15 +142,15 @@ class HomeActivity : AppCompatActivity() {
         //循环放入布局    布局嵌套布局
         for ((index,value) in category.withIndex()){
             //找布局
-            val inflate = LayoutInflater.from(this).inflate(R.layout.layout_category_item, null)
+            val inflate = LayoutInflater.from(activity).inflate(R.layout.layout_category_item, null)
             //赋值
             inflate.cateory_title!!.text = value.name
             //添加值
             val goodslist = value.goodsList
             //网格布局
-            inflate.categoty_rlv.layoutManager = GridLayoutManager(this,2)
+            inflate.categoty_rlv.layoutManager = GridLayoutManager(activity,2)
             //设置适配器
-            val homeCategoryAdapter = HomeCategoryAdapter(goodslist, this)
+            val homeCategoryAdapter = HomeCategoryAdapter(goodslist, activity)
             //绑定适配器
             inflate.categoty_rlv.adapter = homeCategoryAdapter
             //添加布局
@@ -160,6 +160,7 @@ class HomeActivity : AppCompatActivity() {
 
     //请求到的数据
     private fun loadHomeData() {
+        //线程名字
         var thread_name = Thread.currentThread().name
         MainScope().launch {
             var thread_name1 = Thread.currentThread().name
@@ -203,7 +204,7 @@ class HomeActivity : AppCompatActivity() {
             reader.close()
             inputStream.close()
             // :: 表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法。
-            val homeData = Gson().fromJson<HomeData>(sb.toString(),HomeData::class.java)
+            val homeData = Gson().fromJson<HomeData>(sb.toString(), HomeData::class.java)
             return@run homeData
         }
     }
