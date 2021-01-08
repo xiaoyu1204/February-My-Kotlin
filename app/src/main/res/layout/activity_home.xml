@@ -131,7 +131,7 @@
                     android:gravity="center"
                     android:text="专题精选" />
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mRlv_home_topic"
+                    android:id="@+id/recy_topic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
