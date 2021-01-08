@@ -352,12 +352,6 @@ class MainActivity : AppCompatActivity() {
         val kadapter = KoListAdapter(list, this)
         //绑定适配器
         rlv.adapter = kadapter
-//        barAdapter!!.setOnItemClickListener(object : InternetBarAdapter.OnItemClickListener {
-//            override fun onItemClick(view: View, position: Int) {
-//                barAdapter!!.cleckAll(position)
-//                LgqLogutil.e("ITEM" + position)
-//            }
-//        })
         //点击条目进行吐丝
         kadapter.setOncli(object : IoncliItem {
             override fun Onclipos(pos: Int) {
