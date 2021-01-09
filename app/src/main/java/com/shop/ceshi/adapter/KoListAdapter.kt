@@ -38,8 +38,7 @@ class KoListAdapter(private val list: List<String>,private val mContext : Contex
 
     //定义条目回调接口
     private var IoncliItem : IoncliItem? = null
-    fun setOncli(
-        IoncliItem: IoncliItem){
+    fun setOncli(IoncliItem: IoncliItem){
         this.IoncliItem = IoncliItem
     }
 

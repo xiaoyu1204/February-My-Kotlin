@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shop.R
+import com.shop.ceshi.model.callback.IoncliItem
 import com.shop.model.bean.home.Brand
+import com.shop.model.myitem.MyItemClick
 import kotlinx.android.synthetic.main.layout_brand_item.view.*
 
 //参数   继承RecyclerView.Adapter
@@ -40,6 +42,12 @@ class HomeBrandAdapter(private val brandlist:List<Brand?>?,private val mContext:
             brand_item_tv_price!!.text = brandlist!!.get(position)!!.floor_price
             Glide.with(mContext!!).load(brandlist!!.get(position)!!.new_pic_url).into(brand_item_iv)
         }
+
+        //设置接口
+        holder.itemView.setOnClickListener{
+            myItemClick!!.onItemCilck(position)
+        }
+
     }
 
     //定义ViewHolder
@@ -54,5 +62,13 @@ class HomeBrandAdapter(private val brandlist:List<Brand?>?,private val mContext:
             brand_item_tv_price = rootView.findViewById<View>(R.id.brand_item_tv_price) as TextView
         }
     }*/
+
+    //定义条目回调接口
+    private var myItemClick: MyItemClick? = null
+    //set方法
+    fun setOnItemClick(myItemClick: MyItemClick){
+        this.myItemClick = myItemClick
+    }
+
 
 }

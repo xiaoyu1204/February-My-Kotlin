@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.shop.R
 import com.shop.ui.home.fragment.*
+import com.shop.ui.home.fragment.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_primary.*
 
 class PrimaryActivity : AppCompatActivity() {

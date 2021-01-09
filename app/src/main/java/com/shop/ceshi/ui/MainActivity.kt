@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         //[1,2,3]
         val a = arrayOf(1, 2, 3)
 
+
         //赋值
         //[0,2,4]
         val b = Array(3, { i -> (i * 2) })

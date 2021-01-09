@@ -1,6 +1,7 @@
-package com.shop.ui.home.fragment
+package com.shop.ui.home.fragment.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,8 @@ import com.google.gson.Gson
 import com.shop.R
 import com.shop.adapter.home.*
 import com.shop.model.bean.home.*
+import com.shop.model.myitem.MyItemClick
+import com.shop.utils.SpUtils
 import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_category_item.view.*
@@ -67,6 +71,16 @@ class HomeFragment : Fragment() {
         val homeBrandAdapter = HomeBrandAdapter(brandlist, activity)
         //绑定适配器
         recy_brand.adapter = homeBrandAdapter
+        //条目点击
+        homeBrandAdapter!!.setOnItemClick(object : MyItemClick {
+            override fun onItemCilck(pos: Int) {
+                val intent = Intent(activity, HomeBrandActivity::class.java)
+                var id = brandlist.get(pos)!!.id
+                SpUtils.instance!!.setValue("id",id)
+                startActivity(intent)
+            }
+        })
+
     }
 
     //显示新品首发

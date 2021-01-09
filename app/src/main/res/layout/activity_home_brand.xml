@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--使用dataBinding的话，根标签要用layout-->
+    <data>
+        <!--类似于java文件的属性定义，name表示属性名，type表示属性类型-->
+        <variable
+            name="brand"
+            type="com.shop.viewmodel.home.HomeBrandViewModel" />
+    </data>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.home.fragment.home.HomeBrandActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+    
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fr_topic_info_con"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_150"
+                    app:layout_constraintTop_toTopOf="parent">
+    
+                    <ImageView
+                        android:id="@+id/fr_topic_info_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+    
+                    <TextView
+                        android:id="@+id/fr_topic_info_tv_title"
+                        android:text="@{brand.fr_topic_info_tv_title}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/fr_topic_txt"
+                        />
+    
+                    <View
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:background="@color/white"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fr_topic_info_tv_title" />
+    
+                </androidx.constraintlayout.widget.ConstraintLayout>
+    
+                <TextView
+                    android:id="@+id/fr_topic_info_tv_desc"
+                    android:text="@{brand.fr_topic_info_tv_desc}"
+                    app:layout_constraintTop_toBottomOf="@+id/fr_topic_info_rl"
+                    android:textSize="@dimen/dp_16"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/dp_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+    
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_8"
+                    android:background="#E6E3E3" />
+    
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fr_topic_info_rlv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+    
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+
+</layout>
