@@ -1,6 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 
 android {
     compileSdkVersion 30
@@ -22,6 +26,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+    kapt {
+        generateStubs = true
+    }
+    //开启dataBinding功能支持
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -32,5 +48,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //侧滑菜单 recyclerview  协调者布局
+    implementation 'com.android.support:design:30.1.1'
+    //viewModelScope
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    // 数据绑定访问BR的环境
+    kapt "com.android.databinding:compiler:3.5.0"
 
 }

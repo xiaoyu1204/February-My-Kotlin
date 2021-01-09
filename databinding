@@ -1,0 +1,46 @@
+databinding 绑定数据的步骤
+
+1.创建View（Activity Fragment View)
+
+2.创建对应的ViewModel,创建对应的数据变量
+
+3.创建对应的布局，把创建的xml布局修改成databinding形式(打开布局xml alt+enter)
+    如：<layout> <data></data> <xx></xx></layout>
+
+4.设置data节点的数据类型和名字（<variable name="xx" type="xxx"/>），注：type可以是任何的一个对象
+
+5.在as选中Build菜单Mark Project编译一次项目
+
+6.V层通过DataBindingUtil初始化界面（DataBindingUtil.setContentView）,并且获取绑定返回的binding对象
+    拿到的binding的对象，用来调用界面上的id组件
+
+7.实例化ViewModel,通过ViewModelProvider初始化VM
+    如：ViewModelProvider(this).get(NewBindViewModel::class.java)
+
+8.对VM中的变量进行赋值
+
+9.通过binding对象设置数据到界面。
+    如： mBinding!!.setVariable(BR.bindNewVm,vm)
+    注意：BR如果重构项目以后访问不到，查环境
+    a) module中 build.gradle的插件是否安装'kotlin-kapt'
+        apply plugins 'kotlin-kapt' 或
+        plugins {
+            id 'kotlin-kapt'
+        }
+    b) 在build.gradle中android节点中添加
+         kapt {
+                generateStubs = true
+         }
+
+    c) 在依赖中添加
+     kapt  "com.android.databinding:compiler:3.5.0"
+
+
+10.xml布局的界面绑定，通过xml布局中绑定的data，绑定数据到界面组件
+    如：    @{数据}
+            @{bindNewVm.title}  //绑定数据到界面
+            <TextView
+                  android:id="@+id/title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@{bindNewVm.title}"/>
