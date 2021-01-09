@@ -1,10 +1,12 @@
 //apply plugin: 'com.android.application'
 //apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-android-extensions'
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -76,6 +78,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     //侧滑菜单 recyclerview  协调者布局
     implementation 'com.android.support:design:30.1.1'
+    kapt  "com.android.databinding:compiler:3.5.0"
 
 
 }
