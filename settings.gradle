@@ -1,2 +1,3 @@
+include ':BaseMVVM'
 include ':app'
 rootProject.name = "shop-kotlin"
