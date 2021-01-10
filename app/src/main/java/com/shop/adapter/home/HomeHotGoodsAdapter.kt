@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shop.R
+import com.shop.model.bean.home.ChannelTreeDataX
 import com.shop.model.bean.home.HotGoods
 import kotlinx.android.synthetic.main.layout_hotgoods_item.view.*
 import java.nio.channels.Pipe
 
 //参数   继承RecyclerView.Adapter           名字 : 类型   类名后面加了一个? 意思就是这个类可以为空 即可以 = null
-class HomeHotGoodsAdapter(private val hotgoodslist:List<HotGoods?>?,private val mContext:Context?)
+class HomeHotGoodsAdapter(private val hotgoodslist: ArrayList<HotGoods>, private val mContext:Context?)
     :RecyclerView.Adapter<HomeHotGoodsAdapter.ViewHolder>(){
 
     //找布局

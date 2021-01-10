@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
         //监听网络状态的变化
         homeVM.loadStatue.observe(this, Observer { status ->
             if (status == -1) {
-                Log.e("TAG", "initVM: "+"数据加载失败" )
+                Log.e("TAG", "HomeActivity: "+"数据加载失败" )
             }
         })
 

@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.fragment.home.HomeBrandActivity"></activity>
-        <activity android:name=".ui.home.NewBindActivity"></activity>
+        <activity android:name=".ui.home.fragment.home.HomeChannelTypeActivity"></activity>
+        <activity android:name=".ui.home.fragment.home.HomeBrandActivity" />
+        <activity android:name=".ui.home.NewBindActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.PrimaryActivity">
             <intent-filter>

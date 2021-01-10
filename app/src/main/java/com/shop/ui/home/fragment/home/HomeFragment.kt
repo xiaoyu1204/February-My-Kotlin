@@ -3,7 +3,6 @@ package com.shop.ui.home.fragment.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -80,7 +78,6 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
         })
-
     }
 
     //显示新品首发
@@ -130,7 +127,7 @@ class HomeFragment : Fragment() {
     //显示动态栏
     private fun showChannel(channel:List<Channel>){
         //清除所有布局
-        layout_tab.removeAllViews()
+        layout_tab!!.removeAllViews()
         //val 不可变参数
         val layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f)
         //循环
@@ -148,6 +145,19 @@ class HomeFragment : Fragment() {
             inflate.layoutParams = layoutParams
             //添加布局
             layout_tab.addView(inflate)
+
+            //点击跳转
+            inflate.setOnClickListener {
+                //取值
+                var name = channel!!.get(i).name
+                var url = channel!!.get(i).url
+                //传值
+                SpUtils.instance!!.setValue("murl",url)
+                val intent = Intent(activity, HomeChannelTypeActivity::class.java)
+                intent.putExtra("name",name)
+                startActivity(intent)
+            }
+
         }
     }
 
@@ -179,7 +189,7 @@ class HomeFragment : Fragment() {
         MainScope().launch {
             var thread_name1 = Thread.currentThread().name
             var result = homeData()
-            Log.e("TAG",result.data.toString())
+//            Log.e("TAG",result.data.toString())
             //banner
             showBanner(result.data.banner)
             //品牌制作商直供
