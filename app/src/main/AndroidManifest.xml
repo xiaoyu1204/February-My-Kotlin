@@ -13,17 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.fragment.home.HomeChannelTypeActivity"></activity>
-        <activity android:name=".ui.home.fragment.home.HomeBrandActivity" />
-        <activity android:name=".ui.home.NewBindActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.PrimaryActivity">
+        <activity android:name=".ui.main.MainActivity"></activity>
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.SplaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.primary.fragment.home.HomeChannelTypeActivity" />
+        <activity android:name=".ui.primary.fragment.home.HomeBrandActivity" />
+        <activity android:name=".ui.NewBindActivity" />
+        <activity android:name=".ui.HomeActivity" />
+        <activity android:name=".ui.PrimaryActivity" />
         <activity android:name=".ceshi.ui.BaseA" />
         <activity android:name=".ceshi.ui.MainActivity" />
     </application>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.home.fragment.home.HomeChannelTypeActivity">
+    tools:context=".ui.primary.fragment.home.HomeChannelTypeActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/home_type_tab"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         />
 
-    <com.shop.utils.CustomViewPager
+    <com.example.basemvvm.utils.CustomViewPager
         android:id="@+id/home_type_vp_no"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,18 +1,15 @@
 package com.shop.viewmodel.home
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.shop.model.bean.home.HomeBrandData
-import com.shop.utils.SpUtils
+import com.example.basemvvm.utils.SpUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.http.GET
 import java.net.URL
 
 class HomeBrandViewModel: ViewModel() {
@@ -29,7 +26,6 @@ class HomeBrandViewModel: ViewModel() {
 
     suspend fun loadData(){
         var id = SpUtils.instance!!.getInt("id")
-        Log.e("TAG", "loadData: "+id)
         var homebranddata = get("https://cdplay.cn/api/brand/detail?id="+id)
         if(homebranddata != null){
             fr_topic_info_tv_title = homebranddata.data.brand.name

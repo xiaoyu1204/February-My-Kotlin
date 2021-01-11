@@ -4,14 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shop.R
-import com.shop.ceshi.model.callback.IoncliItem
 import com.shop.model.bean.home.Brand
-import com.shop.model.myitem.MyItemClick
+import com.example.basemvvm.model.myitem.MyItemClick
 import kotlinx.android.synthetic.main.layout_brand_item.view.*
 
 //参数   继承RecyclerView.Adapter

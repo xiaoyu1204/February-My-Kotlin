@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shop.R
 import com.shop.model.bean.home.ChannelTreeDataX
-import kotlinx.android.synthetic.main.layout_channeltreedatax_item.view.*
+import kotlinx.android.synthetic.main.layout_channel_treedatax_item.view.*
 
 class HomeTreeAdapter(private val datalist: List<ChannelTreeDataX>,private val mContext:Context?)
     :RecyclerView.Adapter<HomeTreeAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeTreeAdapter.ViewHolder {
-        val inflate = LayoutInflater.from(mContext).inflate(R.layout.layout_channeltreedatax_item, null)
+        val inflate = LayoutInflater.from(mContext).inflate(R.layout.layout_channel_treedatax_item, null)
         return ViewHolder(inflate)
     }
 
