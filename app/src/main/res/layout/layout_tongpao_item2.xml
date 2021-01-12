@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="tongpao_item2"
+            type="com.example.basemvvm.model.bean.tongpao.FilePathList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_20">
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_20"
+            android:id="@+id/title_tong"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{tongpao_item2.title}"/>
+
+        <ImageView
+            android:id="@+id/img11"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_tong"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
+
+        <ImageView
+            android:id="@+id/img22"
+            app:layout_constraintLeft_toRightOf="@id/img11"
+            android:layout_marginLeft="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@id/title_tong"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
+        <ImageView
+            android:id="@+id/img33"
+            app:layout_constraintLeft_toRightOf="@id/img22"
+            android:layout_marginLeft="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@id/title_tong"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

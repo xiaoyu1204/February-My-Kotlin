@@ -76,4 +76,5 @@ class RetrofitFactory {
     fun <T> create(service:Class<T>):T{
         return retrofit.create(service)
     }
+
 }

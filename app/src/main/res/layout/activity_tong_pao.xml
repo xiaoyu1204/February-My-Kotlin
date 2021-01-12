@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="tongpao"
+            type="com.shop.tongpao.TongPaoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.test.SplaseActivity">
+        tools:context=".tongpao.TongPaoActivity">
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tongpao_rlv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

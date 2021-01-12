@@ -1,4 +1,4 @@
-package com.shop.ui
+package com.shop.ui.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -4,10 +4,9 @@ data class TongPaoData(
     val `data`: Data,
     val status: Status
 )
-
 data class Data(
     val comTotal: Int,
-    val list: List<Tongpao>,
+    val list: List<FilePathList>,
     val total: Int
 )
 
@@ -17,7 +16,7 @@ data class Status(
     val statusCode: Int
 )
 
-data class Tongpao(
+data class FilePathList(
     val author: String,
     val cagetory: String,
     val commID: Int,

@@ -8,14 +8,14 @@
         <!--类似于java文件的属性定义，name表示属性名，type表示属性类型-->
         <variable
             name="bindNewVm"
-            type="com.shop.viewmodel.NewBindViewModel" />
+            type="com.shop.viewmodel.test.NewBindViewModel" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.NewBindActivity">
+        tools:context=".ui.test.NewBindActivity">
 
         <TextView
             android:id="@+id/title"

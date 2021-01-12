@@ -41,4 +41,11 @@ class SystemRepository {
         serviceApi.getTopic()
     }
 
+    /**
+     * 获取同袍多布局
+     */
+    suspend fun getMore() = withContext(Dispatchers.IO){
+        serviceApi.getMore()
+    }
+
 }

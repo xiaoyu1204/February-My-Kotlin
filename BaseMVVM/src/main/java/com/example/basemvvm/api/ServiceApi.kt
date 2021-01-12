@@ -1,5 +1,6 @@
 package com.shop.api
 
+import com.example.basemvvm.model.bean.tongpao.TongPaoData
 import com.shop.model.bean.home.HomeData2
 import com.shop.model.bean.topic.TopicData
 import com.shop.net.BaseResp
@@ -17,5 +18,11 @@ interface ServiceApi {
     //专题
     @GET("topic/list?page=1&size=10")
     suspend fun getTopic():BaseResp<TopicData>
+
+    //同袍多布局
+    @GET("discover/hot.json")
+    suspend fun getMore():TongPaoData
+
+
 
 }

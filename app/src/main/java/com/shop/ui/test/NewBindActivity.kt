@@ -1,4 +1,4 @@
-package com.shop.ui
+package com.shop.ui.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,12 +8,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.shop.BR
 import com.shop.R
 import com.shop.databinding.ActivityNewBindBinding
-import com.shop.viewmodel.NewBindViewModel
+import com.shop.viewmodel.test.NewBindViewModel
 
 class NewBindActivity : AppCompatActivity() {
 
     var mBinding:ActivityNewBindBinding? = null
-    var vm:NewBindViewModel?= null
+    var vm: NewBindViewModel?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +26,9 @@ class NewBindActivity : AppCompatActivity() {
     fun initVM(){
         vm = ViewModelProvider(this).get(NewBindViewModel::class.java)
         vm !!.homeData()
-        vm !!.stauts.observe(this, Observer {
+        vm!!.status.observe(this, Observer {
             if(it == 0){
-                mBinding !!.setVariable(BR.bindNewVm,vm)
+//                mBinding !!.setVariable(BR.bindNewVm,vm)
             }
         })
     }

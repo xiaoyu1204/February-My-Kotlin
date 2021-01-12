@@ -1,4 +1,4 @@
-package com.shop.viewmodel
+package com.shop.viewmodel.test
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-class NewBindViewModel: ViewModel() {
+class NewBindViewModel:ViewModel() {
 
-    var stauts:MutableLiveData<Int> = MutableLiveData()
+    var status:MutableLiveData<Int> = MutableLiveData()
     var title:String? = "title"
 
     fun homeData(){
@@ -24,15 +24,18 @@ class NewBindViewModel: ViewModel() {
     suspend fun loadData(){
         var homeData = get("https://cdplay.cn/api/index")
         if(homeData != null){
-            title = homeData.data.hotGoodsList.get(0).name
-            stauts.postValue(0)
+            status.postValue(0)
         }
     }
 
-    //网络请求
+    /**
+     * 网络请求
+     */
     suspend fun get(str:String) = withContext(Dispatchers.IO){
-        val result = URL(str).readText(charset("utf-8"))
-        return@withContext Gson().fromJson(result,HomeData::class.java)
+        var result = URL(str).readText(charset("utf-8"))
+        return@withContext Gson().fromJson<HomeData>(result, HomeData::class.java)
     }
+
+
 
 }
