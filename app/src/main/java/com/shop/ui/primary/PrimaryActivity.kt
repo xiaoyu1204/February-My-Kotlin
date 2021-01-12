@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.shop.R
+import com.shop.ui.main.fragment.car.ShopFragment
+import com.shop.ui.main.fragment.me.MineFragment
+import com.shop.ui.main.fragment.topic.TopicFragment
 import com.shop.ui.primary.fragment.home.HomeFragment
-import com.shop.ui.primary.fragment.me.MeFragment
-import com.shop.ui.primary.fragment.shop.ShopFragment
-import com.shop.ui.primary.fragment.sort.SortFragment
-import com.shop.ui.primary.fragment.topic.TopicFragment
+import com.shop.ui.sort.SortFragment
 import kotlinx.android.synthetic.main.activity_primary.*
 
 class PrimaryActivity : AppCompatActivity() {
@@ -30,14 +30,14 @@ class PrimaryActivity : AppCompatActivity() {
         fragments.add(TopicFragment())
         fragments.add(SortFragment())
         fragments.add(ShopFragment())
-        fragments.add(MeFragment())
+        fragments.add(MineFragment())
 
         //设置适配器
         vp_primary!!.adapter = ViewPage(supportFragmentManager,fragments)
         //绑定
         tab_paimary.setupWithViewPager(vp_primary)
 
-        var listName = arrayOf("首页1", "首页2","专题", "分类", "购物车", "我的")
+        var listName = arrayOf("首页","专题", "分类", "购物车", "我的")
         val icon = arrayOf(
             R.drawable.selector_home,
             R.drawable.selector_topic,

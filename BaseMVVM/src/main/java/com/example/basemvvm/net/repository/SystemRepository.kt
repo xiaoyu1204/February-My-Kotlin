@@ -31,7 +31,7 @@ class SystemRepository {
      * 获取主页数据
      */
     suspend fun getHome() = withContext(Dispatchers.IO){
-//        serviceApi.getHome()
+        serviceApi.getHome()
     }
 
     /**

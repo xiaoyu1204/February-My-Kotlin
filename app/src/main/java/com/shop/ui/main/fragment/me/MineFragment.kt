@@ -2,10 +2,10 @@ package com.shop.ui.main.fragment.me
 
 import com.shop.R
 import com.shop.base.BaseFragment
-import com.shop.databinding.FragmentMine2Binding
+import com.shop.databinding.FragmentMineBinding
 import com.shop.viewmodel.mine.MineViewModel
 
-class MineFragment:BaseFragment<MineViewModel,FragmentMine2Binding>(R.layout.fragment_mine2,MineViewModel::class.java) {
+class MineFragment:BaseFragment<MineViewModel, FragmentMineBinding>(R.layout.fragment_mine,MineViewModel::class.java) {
 
     companion object{
         val instance by lazy { MineFragment() }
