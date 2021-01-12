@@ -2,16 +2,12 @@ package com.shop.adapter.main.home
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.shop.R
-import com.shop.model.bean.home.Brand
 import com.example.basemvvm.model.myitem.MyItemClick
-import com.example.basemvvm.mvvm.BaseViewHolder
 import com.shop.BR
 import com.shop.model.bean.home.Brand2
 import kotlinx.android.synthetic.main.layout_brand_item.view.*
