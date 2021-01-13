@@ -85,9 +85,9 @@ dependencies {
     // 数据绑定访问BR的环境
     kapt "com.android.databinding:compiler:3.5.0"
 
+//    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
+//    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+//    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
+//    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 
-    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
-    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
-    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
-    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 }

@@ -6,11 +6,15 @@
         <variable
             name="tongpao_item2"
             type="com.example.basemvvm.model.bean.tongpao.FilePathList" />
+        <variable
+            name="tongpao_click2"
+            type="com.example.basemvvm.model.myitem.IItemClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{(view)->tongpao_click2.itemClick(view.tag)}"
         android:padding="@dimen/dp_20">
 
         <TextView
@@ -23,6 +27,7 @@
 
         <ImageView
             android:id="@+id/img11"
+            app:imageUrl="@{tongpao_item2.filePathList.get(0).filePath}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_tong"
             android:layout_width="@dimen/dp_100"
@@ -30,6 +35,7 @@
 
         <ImageView
             android:id="@+id/img22"
+            app:imageUrl="@{tongpao_item2.filePathList.get(1).filePath}"
             app:layout_constraintLeft_toRightOf="@id/img11"
             android:layout_marginLeft="@dimen/dp_10"
             app:layout_constraintTop_toBottomOf="@id/title_tong"
@@ -37,6 +43,7 @@
             android:layout_height="@dimen/dp_100" />
         <ImageView
             android:id="@+id/img33"
+            app:imageUrl="@{tongpao_item2.filePathList.get(2).filePath}"
             app:layout_constraintLeft_toRightOf="@id/img22"
             android:layout_marginLeft="@dimen/dp_10"
             app:layout_constraintTop_toBottomOf="@id/title_tong"

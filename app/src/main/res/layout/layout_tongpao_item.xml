@@ -6,11 +6,15 @@
         <variable
             name="tong_item"
             type="com.example.basemvvm.model.bean.tongpao.FilePathList" />
+        <variable
+            name="tongpao_click"
+            type="com.example.basemvvm.model.myitem.IItemClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{(view)->tongpao_click.itemClick(view.tag)}"
         android:padding="@dimen/dp_20">
 
         <TextView
