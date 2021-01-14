@@ -1,5 +1,7 @@
 package com.shop.ui.main.fragment.home
 
+import android.content.Intent
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +12,9 @@ import com.shop.adapter.main.home.HomeHotGoodsAdapter
 import com.shop.base.BaseFragment
 import com.shop.databinding.FragmentHome2Binding
 import com.shop.viewmodel.main.home.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.home_brand_text
+import kotlinx.android.synthetic.main.fragment_home2.*
 
 class HomeFragment:BaseFragment<HomeViewModel, FragmentHome2Binding>(R.layout.fragment_home2,HomeViewModel::class.java) {
 
@@ -40,6 +45,13 @@ class HomeFragment:BaseFragment<HomeViewModel, FragmentHome2Binding>(R.layout.fr
         mDataBinding!!.recyHotgoods.layoutManager = layoutManager2
         mAdapter = HomeHotGoodsAdapter(context)
         mDataBinding!!.recyHotgoods.adapter = mAdapter
+
+        //品牌的跳转
+        home_brand_text.setOnClickListener(View.OnClickListener {
+            var intent = Intent(context,
+                BrandInfoActivity::class.java)
+            startActivity(intent)
+        })
 
     }
 

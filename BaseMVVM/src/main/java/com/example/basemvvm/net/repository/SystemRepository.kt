@@ -34,6 +34,11 @@ class SystemRepository {
         serviceApi.getHome()
     }
 
+    //品牌制造商
+    suspend fun getBrand() = withContext(Dispatchers.IO){
+        serviceApi.getBrand()
+    }
+
     /**
      * 获取专题数据
      */

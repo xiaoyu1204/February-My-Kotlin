@@ -1,5 +1,6 @@
 package com.shop.api
 
+import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.tongpao.TongPaoData
 import com.shop.model.bean.home.HomeData2
 import com.shop.model.bean.topic.TopicData
@@ -23,6 +24,8 @@ interface ServiceApi {
     @GET("discover/hot.json")
     suspend fun getMore():TongPaoData
 
-
+    //品牌制造
+    @GET("brand/list")
+    suspend fun getBrand():BaseResp<BrandData>
 
 }
