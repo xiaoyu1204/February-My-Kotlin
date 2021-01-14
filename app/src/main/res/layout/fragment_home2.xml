@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.shop.model.bean.home.HomeData2"/>
+        <import type="com.shop.ui.main.fragment.home.HomeFragment.TitleClick"/>
         <variable
             name="home2"
             type="com.shop.viewmodel.main.MainViewModel" />
+        <variable
+            name="homeClick"
+            type="TitleClick" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +96,7 @@
                         android:layout_height="@dimen/dp_80"
                         android:text="周一周四·新品首发"
                         android:gravity="center"
+                        android:onClick="@{()->homeClick.clickNewGood()}"
                         android:paddingVertical="@dimen/dp_10"></TextView>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recy_newgood"

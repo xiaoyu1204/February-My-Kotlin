@@ -9,4 +9,8 @@
     <string name="bar_name_shop">购物车</string>
     <string name="bar_name_me">我的</string>
 
+    <string name="title_newgoods_all">综合</string>
+    <string name="title_newgoods_price">价格</string>
+    <string name="title_nregoods_sort">分类</string>
+
 </resources>

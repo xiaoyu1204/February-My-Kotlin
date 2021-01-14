@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.fragment.home.BrandInfoActivity"></activity>
-        <activity android:name=".tongpao.TongPaoActivity"></activity>
-        <activity android:name=".ui.main.MainActivity" >
+        <activity android:name=".ui.main.fragment.home.GoodListDetailActivity"></activity>
+        <activity android:name=".ui.main.fragment.home.BrandInfoActivity" />
+        <activity android:name=".tongpao.TongPaoActivity" />
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ceshi.ui.MainActivity" />
-        <activity android:name=".ui.test.SplaseActivity"></activity>
+        <activity android:name=".ui.test.SplaseActivity" />
         <activity android:name=".ui.primary.fragment.home.HomeChannelTypeActivity" />
         <activity android:name=".ui.primary.fragment.home.HomeBrandActivity" />
         <activity android:name=".ui.test.NewBindActivity" />

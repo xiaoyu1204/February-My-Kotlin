@@ -1,16 +1,22 @@
 package com.shop.ui.main.fragment.home
 
 import android.content.Intent
+import android.util.Log
+import android.util.SparseArray
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.basemvvm.model.myitem.IItemClick
+import com.shop.BR
 import com.shop.R
 import com.shop.adapter.home.MyBannerAdapter
 import com.shop.adapter.main.home.HomeBrandAdapter
 import com.shop.adapter.main.home.HomeHotGoodsAdapter
+import com.shop.adapter.main.home.NewGoodAdapter
 import com.shop.base.BaseFragment
 import com.shop.databinding.FragmentHome2Binding
+import com.shop.model.bean.home.NewGoods2
 import com.shop.viewmodel.main.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.home_brand_text
@@ -21,6 +27,9 @@ class HomeFragment:BaseFragment<HomeViewModel, FragmentHome2Binding>(R.layout.fr
     var mBanner: MyBannerAdapter? = null
     var mBrand:HomeBrandAdapter? = null
     var mAdapter : HomeHotGoodsAdapter? = null
+
+    lateinit var newGoodAdapter: NewGoodAdapter
+    var newgoodList:MutableList<NewGoods2> = mutableListOf()
 
     /**
      * 提供Homefragment实例
@@ -58,7 +67,9 @@ class HomeFragment:BaseFragment<HomeViewModel, FragmentHome2Binding>(R.layout.fr
     override fun initVM() {
         initBan()
         initBrand()
+        initNewGood()
         initHotGoods()
+        mDataBinding.setVariable(BR.homeClick,TitleClick())
     }
 
     override fun initData() {
@@ -75,17 +86,46 @@ class HomeFragment:BaseFragment<HomeViewModel, FragmentHome2Binding>(R.layout.fr
         })
     }
 
-
+    //品牌制造
     private fun initBrand(){
         mViewModel!!.brend.observe(this, Observer {
             mBrand!!.refreshData(it)
         })
     }
 
+    //初始化新品发布
+    fun initNewGood(){
+        mDataBinding.recyNewgood.layoutManager = GridLayoutManager(context,2)
+        var newGoodArr = SparseArray<Int>()
+        newGoodArr.put(R.layout.layout_newgood_item2,com.example.basemvvm.BR.vmNewGood)
+        var newGoodClick = NewGoodItemClick()
+        newGoodAdapter = NewGoodAdapter(context!!, newgoodList, newGoodArr, newGoodClick)
+        mDataBinding.recyNewgood.adapter = newGoodAdapter
+    }
+
+    //热门商品
     private fun initHotGoods() {
         mViewModel.hotGoods.observe(this, Observer {
             mAdapter!!.refreshData(it)
         })
+    }
+
+    /**
+     * 新品发布
+     */
+    inner class NewGoodItemClick: IItemClick<NewGoods2> {
+        override fun itemClick(data: NewGoods2) {
+
+        }
+
+    }
+
+    inner class TitleClick{
+        //新品发布
+        fun clickNewGood(){
+            var intent = Intent(context,GoodListDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

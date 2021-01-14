@@ -53,4 +53,32 @@ class SystemRepository {
         serviceApi.getMore()
     }
 
+    /**
+     * 获取商品列表数据
+     */
+    suspend fun getGoodList(map:HashMap<String,String>) = withContext(Dispatchers.IO){
+        serviceApi.getGoodList(map)
+    }
+
+    /**
+     * 获取商品详情上面数据
+     */
+    suspend fun getGoodTop() = withContext(Dispatchers.IO){
+        serviceApi.getGoodTop()
+    }
+
+    /**
+     * 分类竖着导航
+     */
+    suspend fun getSortNav() = withContext(Dispatchers.IO){
+        serviceApi.getSortNav()
+    }
+
+    /**
+     * 分类 用来请求当前分类的列表数据
+     */
+    suspend fun getSortData(id:Int) = withContext(Dispatchers.IO){
+        serviceApi.getSortData(id)
+    }
+
 }

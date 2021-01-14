@@ -90,4 +90,10 @@ dependencies {
 //    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
 //    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    //垂直的tablayout
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+
+    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 }
