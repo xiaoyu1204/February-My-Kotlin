@@ -42,7 +42,7 @@
                 android:id="@+id/topic_rlv_item_price"
                 android:layout_marginTop="@dimen/dp_10"
                 android:textSize="@dimen/dp_12"
-                android:text="@{topicitem2.price_info}+'元起'"
+                android:text="@{topicitem2.price_info +@string/price_info}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#D50000" />

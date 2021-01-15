@@ -13,4 +13,6 @@
     <string name="title_newgoods_price">价格</string>
     <string name="title_nregoods_sort">分类</string>
 
+    <string name="price_info">元起</string>
+    
 </resources>
