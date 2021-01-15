@@ -63,10 +63,10 @@ class RetrofitFactory {
     class LoggingInterceptor:Interceptor{
         override fun intercept(chain: Interceptor.Chain): Response {
             var request = chain.request()
-            var response = chain.proceed(request)
-            var responseBody = response.peekBody(Long.MAX_VALUE)
-            Log.i("responseBody",responseBody.string())
-            return response
+//            var response =
+//            var responseBody = response.peekBody(Long.MAX_VALUE)
+//            Log.i("responseBody",responseBody.string())
+            return chain.proceed(request)
         }
     }
 

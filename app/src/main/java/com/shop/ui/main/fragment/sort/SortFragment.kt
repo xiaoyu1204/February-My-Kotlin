@@ -1,9 +1,11 @@
 package com.shop.ui.sort
 
+import android.content.Context
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.myshop.model.bean.shop.sort.Category
 import com.shop.R
+import com.shop.adapter.main.sort.SortMarqueeAdapter
 import com.shop.adapter.main.sort.SortNavAdapter
 import com.shop.base.BaseFragment
 import com.shop.databinding.FragmentSortBinding
@@ -40,6 +42,8 @@ class SortFragment:BaseFragment<SortViewModel,FragmentSortBinding>(R.layout.frag
             sortNavAdapter.addList(fragments, categroy as ArrayList<Category>)
             sort_tab.setupWithViewPager(mVp_type)
         })
+        //跑马灯
+        initMarque()
     }
 
     override fun initData() {
@@ -47,6 +51,19 @@ class SortFragment:BaseFragment<SortViewModel,FragmentSortBinding>(R.layout.frag
     }
 
     override fun initVariable() {
+    }
+
+    //跑马灯
+    private fun initMarque(){
+        val marqueeViewListOf = mutableListOf<String>()
+        marqueeViewListOf.add("商品搜索，共239款好物")
+        marqueeViewListOf.add("夏日炎炎")
+        marqueeViewListOf.add("第一波福利还有30秒到达战场")
+        marqueeViewListOf.add("新用户立领1000元优惠卷")
+
+        var sortMarqueeAdapter = SortMarqueeAdapter(context!!, marqueeViewListOf)
+        mDataBinding.sortMarqueevItem.setAdapter(sortMarqueeAdapter)
+
     }
 
 }

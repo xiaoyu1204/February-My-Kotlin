@@ -85,15 +85,15 @@ dependencies {
     // 数据绑定访问BR的环境
     kapt "com.android.databinding:compiler:3.5.0"
 
-//    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
-//    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
-//    compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
-//    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
-
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     //垂直的tablayout
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
-
+    //数据库room
     compile('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
     kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    //HelperUtils
+    implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.1'
+    //跑马灯
+    implementation 'com.xj.marqueeView:marqueeView:0.1.20'
+
 }
