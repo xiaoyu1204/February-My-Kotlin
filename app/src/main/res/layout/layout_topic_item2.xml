@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="topicitem2"
+            type="com.example.basemvvm.model.bean.main.topic.TopicData.DataX" />
+        <variable
+            name="topicitemClick"
+            type="com.example.basemvvm.model.myitem.IItemClick" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+            <ImageView
+                android:id="@+id/topic_rlv_item_iv"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{topicitem2.scene_pic_url}"
+                android:layout_height="@dimen/dp_250" />
+
+            <TextView
+                android:id="@+id/topic_rlv_item_tv_name"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@{topicitem2.title}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/topic_rlv_item_brif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{topicitem2.subtitle}"
+                android:textSize="@dimen/sp_10" />
+
+            <TextView
+                android:id="@+id/topic_rlv_item_price"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textSize="@dimen/dp_12"
+                android:text="@{topicitem2.price_info}+'元起'"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D50000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10"
+                android:background="@color/huise"></View>
+
+        </LinearLayout>
+
+</layout>

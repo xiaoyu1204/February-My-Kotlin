@@ -3,11 +3,11 @@ package com.shop.api
 import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
+import com.example.basemvvm.model.bean.main.topic.TopicData
 import com.example.basemvvm.model.bean.tongpao.TongPaoData
 import com.example.myshop.model.bean.shop.sort.SortDataBean
 import com.example.myshop.model.bean.shop.sort.SortNavBean
 import com.shop.model.bean.home.HomeData2
-import com.shop.model.bean.topic.TopicData
 import com.shop.net.BaseResp
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,10 +22,6 @@ interface ServiceApi {
 
     @POST("auth/refreshToken")  //刷新token
     suspend fun refreshToken(): BaseResp<String>
-
-    //专题
-    @GET("topic/list?page=1&size=10")
-    suspend fun getTopic():BaseResp<TopicData>
 
     //同袍多布局?categoryId=1005007&page=1&size=100
     @GET("discover/hot.json")
@@ -50,5 +46,9 @@ interface ServiceApi {
     // https://cdplay.cn/api/  用来请求当前分类的列表数据
     @GET("catalog/current")
     suspend fun getSortData(@Query("id")id : Int) : SortDataBean
+
+    //专题
+    @GET("topic/list")
+    suspend fun getTopic(@Query("page")page:Int):BaseResp<TopicData>
 
 }

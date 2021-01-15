@@ -1,18 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="topic"
+            type="com.shop.viewmodel.topic.TopicViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="blocksDescendants">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/fr_topic_sc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topic_rlv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/topic_ll"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/topic_ll"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioGroup
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/topic_btn_shang"
+                                android:text="上一页"
+                                android:background="@color/white"
+                                android:checked="true"
+                                style="@style/topic_btn"
+                                />
+
+                            <View
+                                android:layout_width="@dimen/dp_3"
+                                android:layout_height="wrap_content"
+                                android:background="@color/huise"></View>
+
+                            <RadioButton
+                                android:id="@+id/topic_btn_xia"
+                                android:background="@color/white"
+                                android:text="下一页"
+                                style="@style/topic_btn"
+                                />
+
+                        </RadioGroup>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/fr_topic_all"
+            android:src="@color/white"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="topic" />
+            android:id="@+id/lfr_topic_loading"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="加载中..."
+            android:textSize="@dimen/dp_20"
+            android:background="@color/huise"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_50"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

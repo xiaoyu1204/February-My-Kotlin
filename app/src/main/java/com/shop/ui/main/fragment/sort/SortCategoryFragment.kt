@@ -2,6 +2,7 @@ package com.shop.ui.main.fragment.sort
 
 import android.util.Log
 import android.util.SparseArray
+import android.widget.ScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.basemvvm.model.myitem.IItemClick
@@ -12,6 +13,7 @@ import com.shop.adapter.main.sort.SortCategroysAdapter
 import com.shop.base.BaseFragment
 import com.shop.databinding.SortDataItemBinding
 import com.shop.viewmodel.sort.SortViewModel
+import kotlinx.android.synthetic.main.sort_data_item.*
 
 class SortCategoryFragment : BaseFragment<SortViewModel, SortDataItemBinding>
     (R.layout.sort_data_item, SortViewModel::class.java){
@@ -35,6 +37,10 @@ class SortCategoryFragment : BaseFragment<SortViewModel, SortDataItemBinding>
         sortcateadapter = SortCategroysAdapter(context!!,list,sortDataArr,itemClick())
         //绑定适配器
         mDataBinding!!.sortDataMRlv.adapter = sortcateadapter
+
+        //返回顶部
+        sort_data_info_nsl.fullScroll(ScrollView.FOCUS_UP)
+
     }
 
     inner class itemClick: IItemClick<SortDataBean.SubCategory> {
