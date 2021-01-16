@@ -12,6 +12,7 @@ import com.shop.databinding.FragmentSortBinding
 import com.shop.ui.main.fragment.sort.SortCategoryFragment
 import com.shop.viewmodel.sort.SortViewModel
 import kotlinx.android.synthetic.main.fragment_sort.*
+import kotlinx.android.synthetic.main.home_toolbar.view.*
 
 class SortFragment:BaseFragment<SortViewModel,FragmentSortBinding>(R.layout.fragment_sort,SortViewModel::class.java) {
 
@@ -62,7 +63,7 @@ class SortFragment:BaseFragment<SortViewModel,FragmentSortBinding>(R.layout.frag
         marqueeViewListOf.add("新用户立领1000元优惠卷")
 
         var sortMarqueeAdapter = SortMarqueeAdapter(context!!, marqueeViewListOf)
-        mDataBinding.sortMarqueevItem.setAdapter(sortMarqueeAdapter)
+        mDataBinding.homeToolbar.marquee_item.setAdapter(sortMarqueeAdapter)
 
     }
 

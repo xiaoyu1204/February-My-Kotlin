@@ -43,4 +43,12 @@
         <item name="android:maxLines">1</item>
     </style>
 
+<!--    <View style="@style/VerticalLine"/>-->
+
+<!--    <style name="VerticalLine">-->
+<!--        <item name="android:background">#A79B9B</item>-->
+<!--        <item name="android:layout_width">1dp</item>-->
+<!--        <item name="android:layout_height">match_parent</item>-->
+<!--    </style>-->
+
 </resources>

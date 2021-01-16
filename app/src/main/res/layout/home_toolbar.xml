@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true">
+
+    <ImageView
+        android:id="@+id/iv_signin"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/dp_5"
+        android:background="@mipmap/signin" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_32"
+        android:layout_margin="@dimen/dp_5"
+        android:layout_toStartOf="@id/iv_robot"
+        android:layout_toEndOf="@id/iv_signin"
+        android:background="@drawable/toolbar_back">
+
+        <ImageView
+            android:id="@+id/iv_ewm"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@mipmap/ewm" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_toEndOf="@id/iv_ewm"
+            android:background="@color/colorA" />
+
+        <com.xj.marqueeview.MarqueeView
+            android:id="@+id/marquee_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@id/iv_camera"
+            android:layout_toEndOf="@id/view_line"
+            app:mvGravity="left" />
+
+        <ImageView
+            android:id="@+id/iv_camera"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_toStartOf="@+id/tv_sou"
+            android:background="@mipmap/camera" />
+
+        <TextView
+            android:id="@+id/tv_sou"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_32"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/toolbar_sou"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/f8"
+            android:textSize="@dimen/dp_8" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_robot"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/dp_5"
+        android:background="@mipmap/robot" />
+</RelativeLayout>
