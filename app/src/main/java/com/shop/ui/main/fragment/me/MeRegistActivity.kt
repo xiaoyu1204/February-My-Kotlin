@@ -91,15 +91,15 @@ class MeRegistActivity (
     }
 
     override fun initVM() {
-        TODO("Not yet implemented")
+
     }
 
     override fun initData() {
-        TODO("Not yet implemented")
+
     }
 
     override fun initVariable() {
-        TODO("Not yet implemented")
+
     }
 
 
