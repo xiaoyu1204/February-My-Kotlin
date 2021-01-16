@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <!--绑定界面需要的数据-->
         <variable
             name="SubCategory"
             type="com.example.myshop.model.bean.shop.sort.SortDataBean.SubCategory" />
+        <!--绑定点击事件-->
         <variable
             name="SubClick"
             type="com.example.basemvvm.model.myitem.IItemClick" />
@@ -15,6 +17,7 @@
         android:layout_width="@dimen/dp_120"
         android:layout_height="@dimen/dp_200"
         android:background="@color/cardview_light_background"
+        android:onClick="@{(view)->SubClick.itemClick(view.tag)}"
         android:gravity="center"
         android:orientation="vertical">
 

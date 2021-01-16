@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.basemvvm.model.bean.main.sort.DataX"/>
+        <import type="com.example.basemvvm.model.myitem.IItemClick"/>
+        <variable
+            name="sortdataitem"
+            type="DataX" />
+        <variable
+            name="sortdataitemclick"
+            type="IItemClick" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:onClick="@{(view)->sortdataitemclick.itemClick(view.tag)}"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_250">
+
+        <ImageView
+            android:id="@+id/iv_home_tree_img"
+            app:imageUrl="@{sortdataitem.list_pic_url}"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_140"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_home_tree_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{sortdataitem.name}"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_below="@id/iv_home_tree_img"
+            />
+
+        <TextView
+            android:id="@+id/tv_home_tree_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/qian+sortdataitem.retail_price}"
+            android:textSize="12sp"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_below="@id/tv_home_tree_name"
+            android:textColor="#D50000"
+            />
+
+    </LinearLayout>
+</layout>

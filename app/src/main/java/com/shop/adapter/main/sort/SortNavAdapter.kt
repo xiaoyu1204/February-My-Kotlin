@@ -26,7 +26,7 @@ class SortNavAdapter(fm:FragmentManager):FragmentStatePagerAdapter(fm){
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return category[position]!!.name
+        return category[position].name
     }
 
 }

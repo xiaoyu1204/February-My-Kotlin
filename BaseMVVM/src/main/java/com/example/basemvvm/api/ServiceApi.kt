@@ -3,6 +3,8 @@ package com.shop.api
 import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
+import com.example.basemvvm.model.bean.main.sort.SortDataInfo
+import com.example.basemvvm.model.bean.main.sort.SortDataInfoBottomData
 import com.example.basemvvm.model.bean.main.topic.TopicData
 import com.example.basemvvm.model.bean.me.MeLoginBean
 import com.example.basemvvm.model.bean.me.MeRegisterBean
@@ -16,6 +18,7 @@ import java.util.HashMap
 
 interface ServiceApi {
 
+    //首页
     @GET("index")
     suspend fun getHome():BaseResp<HomeData2>   // BaseResp抽取的一个bean类的外层结构 homeData当前接口返回的具体
 
@@ -45,6 +48,16 @@ interface ServiceApi {
     // https://cdplay.cn/api/  用来请求当前分类的列表数据
     @GET("catalog/current")
     suspend fun getSortData(@Query("id")id : Int) : SortDataBean
+
+    //分类右边数据点击详情
+    @GET("goods/category")
+    suspend fun getSortDataInfo(@Query("id")id:Int):BaseResp<SortDataInfo>
+
+    //https://cdplay.cn/api/goods/list?page=1&size=100&categoryId=1008002
+    //?page=1&size=100&categoryId=1008002
+    //分类右边数据点击详情rlv
+    @GET("goods/list?page=1&size=100")
+    suspend fun getSortInfoItem(@Query("categoryId")id:Int):BaseResp<SortDataInfoBottomData>
 
     //专题
     @GET("topic/list")

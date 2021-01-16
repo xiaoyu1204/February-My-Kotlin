@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.example.basemvvm.model.bean.main.home.GoodListData.Goods"/>
+        <import type="com.example.basemvvm.model.myitem.IItemClick"/>
+        <!--绑定界面需要的数据-->
         <variable
             name="gooditem"
-            type="com.example.basemvvm.model.bean.main.home.GoodListData.Goods" />
+            type="Goods" />
+        <!--绑定点击事件-->
         <variable
             name="goodClick"
-            type="com.example.basemvvm.model.myitem.IItemClick" />
+            type="IItemClick" />
     </data>
 
     <LinearLayout

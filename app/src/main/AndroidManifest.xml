@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.fragment.me.MeRegistActivity"></activity>
+        <activity android:name=".ui.main.fragment.sort.SortDataInfoActivity"></activity>
+        <activity android:name=".ui.main.fragment.me.MeRegistActivity" />
         <activity android:name=".ui.main.fragment.me.MineLoginActivity" />
         <activity android:name=".ui.main.fragment.home.GoodListDetailActivity" />
         <activity android:name=".ui.main.fragment.home.BrandInfoActivity" />

@@ -1,5 +1,6 @@
 package com.shop.ui.main.fragment.sort
 
+import android.content.Intent
 import android.util.Log
 import android.util.SparseArray
 import android.widget.ScrollView
@@ -45,7 +46,12 @@ class SortCategoryFragment : BaseFragment<SortViewModel, SortDataItemBinding>
 
     inner class itemClick: IItemClick<SortDataBean.SubCategory> {
         override fun itemClick(data: SortDataBean.SubCategory) {
-            Log.e("TAG::SubCategory",data.name)
+            var id = data.id
+            var name = data.name
+            val intent = Intent(activity,SortDataInfoActivity::class.java)
+            intent.putExtra("id",id)
+            intent.putExtra("name",name)
+            startActivity(intent)
         }
     }
 

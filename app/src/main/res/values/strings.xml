@@ -14,6 +14,7 @@
     <string name="title_nregoods_sort">分类</string>
 
     <string name="price_info">元起</string>
+    <string name="qian">￥</string>
 
     <!-- me - login -->
     <string name="hint_login_username">账号</string>

@@ -38,12 +38,10 @@ open abstract class BaseAdapter<D>(
         var layoutId = getItemViewType(position)
         //获取layout id 所对应的BR的id
         val type = layouts.get(layoutId)
+        //界面组件显示数据的绑定
         holder.dataBinding.setVariable(type,list.get(position))
         holder.dataBinding.root.tag = list.get(position)
 
-//        if (clicks.size() > 0) {
-//            var brname = clicks[0]
-//        }
         bindData(holder.dataBinding,list.get(position),layoutId)
     }
 
@@ -65,6 +63,4 @@ open abstract class BaseAdapter<D>(
     //TODO 内联函数  内部类  参数是dataBinding 而不是View,因为dataBinding可以绑定数据，也可以显示页面
     inner class BaseVH(val dataBinding:ViewDataBinding) :RecyclerView.ViewHolder(dataBinding.root)
 
-    //等同上面
-    //inner class BaseVH(view:View) :RecyclerView.ViewHolder(view)
 }

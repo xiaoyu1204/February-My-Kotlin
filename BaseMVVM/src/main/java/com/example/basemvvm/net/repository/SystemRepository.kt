@@ -82,6 +82,20 @@ class SystemRepository {
     }
 
     /**
+     * 分类   右边数据点击详情
+     */
+    suspend fun getSortDataInfo(id: Int) = withContext(Dispatchers.IO){
+        serviceApi.getSortDataInfo(id)
+    }
+
+    /**
+     * 分类   右边数据点击详情    rlv
+     */
+    suspend fun getSortInfoItem(id:Int) = withContext(Dispatchers.IO){
+        serviceApi.getSortInfoItem(id)
+    }
+
+    /**
      * 登录
      */
     suspend fun MeLogin(username:String,password:String) = withContext(Dispatchers.IO){
