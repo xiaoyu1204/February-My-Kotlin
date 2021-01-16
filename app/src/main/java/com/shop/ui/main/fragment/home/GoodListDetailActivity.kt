@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.util.SparseArray
 import android.util.TypedValue
@@ -34,7 +36,7 @@ import com.shop.viewmodel.main.home.GoodListViewModel
 class GoodListDetailActivity(
     var lid: Int = R.layout.activity_good_list_detail
 ): BaseActivity<GoodListViewModel, ActivityGoodListDetailBinding>(lid, GoodListViewModel::class.java),
-    View.OnClickListener{
+    View.OnClickListener, Parcelable {
 
     var list:MutableList<GoodListData.Goods> = mutableListOf()
     lateinit var goodlistAdapter: GoodListAdapter
@@ -53,6 +55,15 @@ class GoodListDetailActivity(
     var order: String? = null
     var sort: String? = null
     var categoryId = 0
+
+    constructor(parcel: Parcel) : this(parcel.readInt()) {
+        isNew = parcel.readInt()
+        page = parcel.readInt()
+        size = parcel.readInt()
+        order = parcel.readString()
+        sort = parcel.readString()
+        categoryId = parcel.readInt()
+    }
 
     override fun initView() {
         mDataBinding.mRlvNewGoodList.layoutManager = GridLayoutManager(this,2)
@@ -255,6 +266,30 @@ class GoodListDetailActivity(
         textView.gravity = Gravity.CENTER
         textView.setBackgroundResource(R.drawable.shape_home_newgoods_filter_item_banckground_black)
         return textView
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(lid)
+        parcel.writeInt(isNew)
+        parcel.writeInt(page)
+        parcel.writeInt(size)
+        parcel.writeString(order)
+        parcel.writeString(sort)
+        parcel.writeInt(categoryId)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<GoodListDetailActivity> {
+        override fun createFromParcel(parcel: Parcel): GoodListDetailActivity {
+            return GoodListDetailActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<GoodListDetailActivity?> {
+            return arrayOfNulls(size)
+        }
     }
 
 

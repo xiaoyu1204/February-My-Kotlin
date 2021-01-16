@@ -48,7 +48,7 @@ class HomeBrandAdapter(var mContext:Context?,var brandlist:List<Brand2> = listOf
 
         //设置接口
         holder.itemView.setOnClickListener{
-            myItemClick!!.onItemCilck(position)
+//            myItemClick!!.onItemCilck(position)
         }
 
     }

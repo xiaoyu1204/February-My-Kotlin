@@ -14,5 +14,24 @@
     <string name="title_nregoods_sort">分类</string>
 
     <string name="price_info">元起</string>
-    
+
+    <!-- me - login -->
+    <string name="hint_login_username">账号</string>
+    <string name="hint_login_pw">密码</string>
+    <string name="tips_login_">用户名和密码不能为空</string>
+    <string name="tips_login">请输入正确的用户名和密码</string>
+    <string name="tips_ok_login">已经登录</string>
+
+    <!--me regist-->
+    <string name="hint_regist_username">用户名</string>
+    <string name="hint_regist_pw">确认密码</string>
+    <string name="hint_regist_verification">验证码</string>
+    <string name="tips_regist">请输入正确的用户名和密码和确认密码</string>
+    <string name="tips_regist_pw_pw2">密码和确认密码必须一致</string>
+    <string name="tips_regist_pw_6">密码必须大于6位</string>
+    <string name="tips_regist_ver">正确填写验证码</string>
+    <string name="tips_regist_">用户已经被注册</string>
+    <string name="tips_shu">请选中购买商品数量</string>
+    <string name="address">填写的地址信息不完整</string>
+
 </resources>

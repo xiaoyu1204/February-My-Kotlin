@@ -4,15 +4,14 @@ import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
 import com.example.basemvvm.model.bean.main.topic.TopicData
+import com.example.basemvvm.model.bean.me.MeLoginBean
+import com.example.basemvvm.model.bean.me.MeRegisterBean
 import com.example.basemvvm.model.bean.tongpao.TongPaoData
 import com.example.myshop.model.bean.shop.sort.SortDataBean
 import com.example.myshop.model.bean.shop.sort.SortNavBean
 import com.shop.model.bean.home.HomeData2
 import com.shop.net.BaseResp
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 import java.util.HashMap
 
 interface ServiceApi {
@@ -50,5 +49,15 @@ interface ServiceApi {
     //专题
     @GET("topic/list")
     suspend fun getTopic(@Query("page")page:Int):BaseResp<TopicData>
+
+    //登录接口
+    @POST("auth/login")
+    @FormUrlEncoded
+    suspend fun MeLogin(@Field("username")username:String,@Field("password")password:String):BaseResp<MeLoginBean>
+
+    //注册接口
+    @POST("auth/registernew")
+    @FormUrlEncoded
+    suspend fun MeRegist(@Field("username")username:String,@Field("password")password:String):BaseResp<MeRegisterBean>
 
 }

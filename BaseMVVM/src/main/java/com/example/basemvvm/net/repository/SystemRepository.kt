@@ -81,4 +81,18 @@ class SystemRepository {
         serviceApi.getSortData(id)
     }
 
+    /**
+     * 登录
+     */
+    suspend fun MeLogin(username:String,password:String) = withContext(Dispatchers.IO){
+        serviceApi.MeLogin(username,password)
+    }
+
+    /**
+     * 注册
+     */
+    suspend fun MeRegist(username:String,password:String) = withContext(Dispatchers.IO){
+        serviceApi.MeRegist(username,password)
+    }
+
 }
