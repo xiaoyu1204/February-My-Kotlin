@@ -68,7 +68,7 @@ interface ServiceApi {
     suspend fun MeLogin(@Field("username")username:String,@Field("password")password:String):BaseResp<MeLoginBean>
 
     //注册接口
-    @POST("auth/registernew")
+    @POST("auth/register")
     @FormUrlEncoded
     suspend fun MeRegist(@Field("username")username:String,@Field("password")password:String):BaseResp<MeRegisterBean>
 

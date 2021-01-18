@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 
 class MineRegisterViewModel:BaseViewModel(Injection.repository) {
 
-    //    //注册
-    var meregister : MutableLiveData<MeRegisterBean.UserInfo> = MutableLiveData()
+    //注册
+    var meregister : MutableLiveData<List<MeRegisterBean>> = MutableLiveData()
 
     //获取注册接口
     fun MeRegister(username:String,password:String){
@@ -19,7 +19,7 @@ class MineRegisterViewModel:BaseViewModel(Injection.repository) {
             var result = repository.MeRegist(username,password)
             if(result.errno == 0){
                 //切换线程
-                meregister.postValue(result.data.userInfo)
+                meregister.postValue(listOf(result.data))
             }else if(result.errno == 665){
                 //刷新token
                 refreshToken

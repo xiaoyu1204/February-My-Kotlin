@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class MineLoginViewModel:BaseViewModel(Injection.repository) {
 
     //登录
-    var melogin : MutableLiveData<MeLoginBean.UserInfo> = MutableLiveData()
+    var melogin : MutableLiveData<List<MeLoginBean>> = MutableLiveData()
 
     //获取登录接口
     fun MeLogin(username:String,password:String){
@@ -19,7 +19,7 @@ class MineLoginViewModel:BaseViewModel(Injection.repository) {
             var result = repository.MeLogin(username,password)
             if(result.errno == 0){
                 //切换线程
-                melogin.postValue(result.data.userInfo)
+                melogin.postValue(listOf(result.data))
             }else if(result.errno == 665){
                 //刷新token
                 refreshToken

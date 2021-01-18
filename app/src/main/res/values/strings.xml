@@ -23,6 +23,7 @@
     <string name="tips_login_">用户名和密码不能为空</string>
     <string name="tips_login">请输入正确的用户名和密码</string>
     <string name="tips_ok_login">已经登录</string>
+    <string name="tips_login_ok">登录成功</string>
 
     <!--me regist-->
     <string name="hint_regist_username">用户名</string>

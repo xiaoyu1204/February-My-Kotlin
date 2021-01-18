@@ -1,18 +1,16 @@
 package com.shop.ui.main.fragment.me
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import androidx.lifecycle.Observer
 import com.example.basemvvm.utils.CodeUtils
-import com.example.basemvvm.utils.MyMmkv
+import com.example.basemvvm.utils.SpUtils
 import com.example.basemvvm.utils.ToastUtils
 import com.shop.R
 import com.shop.base.BaseActivity
 import com.shop.databinding.ActivityMeRegistBinding
-import com.shop.databinding.ActivityMineLoginBinding
 import com.shop.viewmodel.main.mine.MineRegisterViewModel
-import com.shop.viewmodel.mine.MineViewModel
 import kotlinx.android.synthetic.main.activity_me_regist.*
 
 ///MyMmkv.getString("token")
@@ -21,7 +19,8 @@ class MeRegistActivity (
 ): BaseActivity<MineRegisterViewModel, ActivityMeRegistBinding>(lid, MineRegisterViewModel::class.java),
     View.OnClickListener{
 
-    var username:String? = null
+    private lateinit var username:String
+    private lateinit var pw:String
 
     override fun initView() {
         //验证码
@@ -53,7 +52,7 @@ class MeRegistActivity (
 
     private fun initRegist() {
         username = me_regist_input_username!!.text.toString()
-        val pw = me_regist_input_pw!!.text.toString()
+        pw = me_regist_input_pw!!.text.toString()
         val pw2 = me_regist_input_pw2!!.text.toString()
         val ver = me_regist_input_verification!!.text.toString()
 
@@ -65,7 +64,7 @@ class MeRegistActivity (
                 if (pw.length >= 6) {
                     //验证码不能为空
                     if (ver == "" || ver.length != 0) {
-                        initRe()
+                        initRe(pw)
                     }else {
                         //验证码不能为空
                         ToastUtils.s(this, getString(R.string.tips_regist_ver))
@@ -84,14 +83,50 @@ class MeRegistActivity (
         }
     }
 
-    fun initRe(){
-        //取出MyMmkv中存入的username
-        MyMmkv.getString(username!!)
-        //判断sp中是否有存入的username
+    fun initRe(pw: String) {
+        //取出Sp中存入的username
+        var string = SpUtils.instance!!.getString(username)
+        //判断Sp中是否有存入的username
+        if(!TextUtils.isEmpty(string)){
+            //如果有存入的
+            //用户名已经注册
+            ToastUtils.s(this,getString(R.string.tips_regist_))
+            return
+        }else{
+            //没有存入的
+            //注册方法
+            zhuce(username!!,pw)
+        }
+    }
+
+    private fun zhuce(username: String, pw: String) {
+        /**
+         * 1.注册
+         * 2.将用户名最为key 密钥（token）作为value 存入sp (sp.....set)
+         */
+        mViewModel.MeRegister(username,pw)
     }
 
     override fun initVM() {
+        mViewModel.meregister.observe(this, Observer {
+            if(it!=null && it.size>0){
+                var token = it.get(0).token
+                if(!TextUtils.isEmpty(token)){
+                    //保存到sp中
+                    SpUtils.instance!!.setValue(username,token)
+                    SpUtils.instance!!.setValue("token",token)
+                    SpUtils.instance!!.setValue("uid",it.get(0).userInfo.uid)
 
+                    //回传值
+                    val intent = intent
+                    intent.putExtra("username",username)
+                    intent.putExtra("password",pw)
+                    setResult(100,intent)
+                    finish()
+
+                }
+            }
+        })
     }
 
     override fun initData() {

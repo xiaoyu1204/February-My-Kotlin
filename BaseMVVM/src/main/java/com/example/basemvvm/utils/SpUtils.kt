@@ -33,7 +33,7 @@ class SpUtils {
         editor.commit()
     }
 
-    fun getStrring(key: String?):String?{
+    fun getString(key: String?):String?{
         return sp!!.getString(key,"")
     }
 
