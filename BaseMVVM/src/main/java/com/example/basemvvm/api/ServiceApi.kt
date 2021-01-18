@@ -2,6 +2,7 @@ package com.shop.api
 
 import com.example.basemvvm.model.bean.main.DetailInfoBottomData
 import com.example.basemvvm.model.bean.main.DetailInfoData
+import com.example.basemvvm.model.bean.main.car.CarAddBean
 import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
@@ -85,6 +86,11 @@ interface ServiceApi {
     //商品详情底部数据  id=1155000
     @GET("goods/related")
     suspend fun getDetailInfoBottom(@Query("id")id:Int):BaseResp<DetailInfoBottomData>
+
+    //加入购物车
+    @POST("cart/add")
+    @FormUrlEncoded
+    suspend fun AddCar(@FieldMap map: HashMap<String, String>):BaseResp<CarAddBean>
 
 
 }

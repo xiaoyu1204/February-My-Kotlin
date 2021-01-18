@@ -6,6 +6,7 @@ import android.util.SparseArray
 import android.widget.ScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.basemvvm.model.myitem.IItemClick
 import com.example.myshop.model.bean.shop.sort.SortDataBean
 import com.shop.BR
@@ -54,6 +55,7 @@ class SortCategoryFragment(var Iid:Int) : BaseFragment<SortViewModel, SortDataIt
         mViewModel!!.sortdata. observe(this, Observer {
             sortcateadapter!!.refreshData(it.subCategoryList)
             mDataBinding.setVariable(BR.SortData,it)
+            Glide.with(this).load(it.wap_banner_url).into(sort_data_head_img)
         })
     }
 

@@ -84,9 +84,8 @@ class MeUserInfoActivity : BaseActivity<MeUserInfoViewModel, ActivityMeUserInfoB
                 val map = HashMap<String,String>()
                 map["nickname"] = nickname_1!!
                 mViewModel.MeUserInfo(map)
-                layout_input.visibility = View.GONE
                 txt_nickname.setText(nickname_1)
-                txt_input.setText("")
+
             }
         }
     }
@@ -99,9 +98,7 @@ class MeUserInfoActivity : BaseActivity<MeUserInfoViewModel, ActivityMeUserInfoB
                 val map = HashMap<String,String>()
                 map["birthday"] = birthday_1!!
                 mViewModel.MeUserInfo(map)
-                layout_input.visibility = View.GONE
                 txt_birthday.setText(birthday_1)
-                txt_input.setText("")
             }
         }
     }
@@ -114,9 +111,11 @@ class MeUserInfoActivity : BaseActivity<MeUserInfoViewModel, ActivityMeUserInfoB
 
     override fun initVM() {
         mViewModel.meuserinfo.observe(this, Observer {
+            Log.e("TAG", "initVM: "+"成功" )
             if (it != null && it.size > 0) {
                 SystemUtils.closeSoftKeyBoard(this)
                 layout_input!!.visibility = View.GONE
+                txt_input.setText("")
                 SpUtils.instance!!.setValue("nickname", nickname_1)
                 SpUtils.instance!!.setValue("birthday", birthday_1)
             }

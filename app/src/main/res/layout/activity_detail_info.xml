@@ -234,7 +234,6 @@
                         android:layout_marginLeft="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_10"
                         android:scaleType="fitXY"
-                        app:imageUrl="@{detailinfo.comment.data.pic_list.get(0).pic_url}"
                         android:src="@mipmap/ic_launcher"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/home_detail_info_comment_head_desc" />

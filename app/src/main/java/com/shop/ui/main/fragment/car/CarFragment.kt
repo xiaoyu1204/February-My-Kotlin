@@ -3,12 +3,12 @@ package com.shop.ui.main.fragment.car
 import com.shop.R
 import com.shop.base.BaseFragment
 import com.shop.databinding.FragmentShopBinding
-import com.shop.viewmodel.shop.ShopViewModel
+import com.shop.viewmodel.car.CarViewModel
 
-class ShopFragment:BaseFragment<ShopViewModel, FragmentShopBinding>(R.layout.fragment_shop,ShopViewModel::class.java) {
+class CarFragment:BaseFragment<CarViewModel, FragmentShopBinding>(R.layout.fragment_shop,CarViewModel::class.java) {
 
     companion object{
-        val instance by lazy { ShopFragment() }
+        val instance by lazy { CarFragment() }
     }
 
     override fun initView() {

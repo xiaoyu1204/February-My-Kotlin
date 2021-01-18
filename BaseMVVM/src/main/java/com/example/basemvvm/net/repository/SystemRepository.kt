@@ -129,4 +129,11 @@ class SystemRepository {
         serviceApi.getDetailInfoBottom(id)
     }
 
+    /**
+     * 加入购物车
+     */
+    suspend fun AddCar(map: HashMap<String, String>) = withContext(Dispatchers.IO){
+        serviceApi.AddCar(map)
+    }
+
 }

@@ -31,7 +31,7 @@ class RetrofitFactory {
             chain -> val request = chain.request()
                 .newBuilder()
                 .addHeader("charset","UTF-8")
-                .addHeader("X-Nideshop-Token",Constants.token)
+                .addHeader("X-Nideshop-Token",SpUtils.instance!!.getString("token"))
                 .build()
             chain.proceed(request)
         }

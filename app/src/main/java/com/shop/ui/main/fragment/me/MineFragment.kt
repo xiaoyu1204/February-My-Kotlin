@@ -30,7 +30,8 @@ class MineFragment:BaseFragment<MineViewModel, FragmentMineBinding>(R.layout.fra
     //懒加载
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if(!hidden){
+        if(hidden == true){
+            initLogin()
             initData()
             initLogin()
         }

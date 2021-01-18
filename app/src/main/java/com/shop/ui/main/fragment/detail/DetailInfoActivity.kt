@@ -4,12 +4,11 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.Log
 import android.util.SparseArray
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.PopupWindow
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.basemvvm.BR
 import com.example.basemvvm.model.bean.main.*
+import com.example.basemvvm.model.bean.main.Gallery
 import com.example.basemvvm.model.myitem.IItemClick
 import com.example.basemvvm.utils.MyMmkv
 import com.example.basemvvm.utils.SpUtils
@@ -32,7 +32,8 @@ import com.shop.databinding.ActivityDetailInfoBinding
 import com.shop.viewmodel.main.detail.DetailInfoViewModel
 import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.activity_detail_info.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.layout_detail_pop.*
+import java.util.*
 import java.util.regex.Pattern
 
 class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoBinding>(
@@ -60,9 +61,14 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
 
     val listUrl = ArrayList<String>()
     var id: Int? = null
-    var countPos: Int? = null
     private var popupWindow: PopupWindow? = null
     var currentPos: Int? = null
+
+    //添加购物车
+    private var popupWindow_addcar: PopupWindow? = null
+    private var tv_shu: TextView? = null
+    private var shu = 1         //购买的数量
+    private var isSelect = true
 
     override fun initView() {
         id = intent.getIntExtra("id", 0)
@@ -80,6 +86,7 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
     override fun initData() {
         mViewModel.detailinfo.observe(this, Observer {
             mDataBinding.setVariable(BR.detailinfo, it)
+            mDataBinding.setVariable(BR.detail_addcar,it)
             if (!TextUtils.isEmpty(it.toString())) {
                 //banner
                 initBanner(it.gallery)
@@ -91,8 +98,9 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
 //                initGoodDetail(it.info.goods_desc)
                 initBigImage(it)
                 //点击大图  rlv
-                //商品参数
                 initParameter(it.attribute)
+                //加入购物车
+                initaddCar(it.info,it.productList)
             } else {
                 Log.e("TAG", "detailinfo: " + "无数据")
             }
@@ -103,6 +111,13 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
                 initBottomInfo(it)
             } else {
                 Log.e("TAG", "detailinfobottom: " + "无数据")
+            }
+        })
+        mViewModel.addCar.observe(this, Observer {
+            if (it != null && it.size > 0) {
+                Log.e("TAG", "detailaddCar: " + it.get(0).cartList)
+            }else {
+                Log.e("TAG", "detailaddCar: " + "无数据")
             }
         })
     }
@@ -187,6 +202,8 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
             home_detail_info_comment_con1!!.visibility = View.VISIBLE
             //显示商品文字
             home_detail_info_comment_con2!!.visibility = View.VISIBLE
+            //评论图片赋值
+            Glide.with(this).load(comment.data.pic_list.get(0).pic_url).into(home_detail_info_comment_img)
         }
     }
 
@@ -211,10 +228,7 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
     //大图监听
     inner class BigImageClick : IItemClick<String> {
         override fun itemClick(data: String) {
-            //currentPos = MyMmkv.getInt("detail_image")
             currentPos = SpUtils.instance!!.getInt("detail_image")
-            //Log.e("TAG", "BigImageClick:下标 " + currentPos)
-            //countPos = currentPos
             //弹出pop
             initPop()
         }
@@ -237,12 +251,9 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
     //TODO 大图点击内部类
     private fun initPop() {
         //PopWindow条目布局
-        val popupView: View =
-            LayoutInflater.from(this@DetailInfoActivity)
-                .inflate(R.layout.layout_detail_bigimage_pop, null)
+        val popupView: View = LayoutInflater.from(this@DetailInfoActivity).inflate(R.layout.layout_detail_bigimage_pop, null)
         //设置popu
-        popupWindow =
-            PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        popupWindow = PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         //找到视图
         popupWindow!!.contentView = popupView
         popupWindow!!.isClippingEnabled = false
@@ -312,8 +323,6 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
 
             override fun instantiateItem(container: ViewGroup, position: Int): Any {
                 val photoView = PhotoView(this@DetailInfoActivity)
-                //val photoView = ImageView(this@DetailInfoActivity)
-
                 Glide.with(this@DetailInfoActivity).load(listUrl.get(position)).apply(RequestOptions.bitmapTransform(RoundedCorners(20))).into(photoView)
 
                 container.addView(photoView) //添加进入视图
@@ -332,6 +341,120 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
     private fun updatePage(count: TextView) {
         val page: String = (currentPos!! + 1).toString()
         count.setText(page)
+    }
+
+    //TODO 加入购物车
+    private fun initaddCar(info: Info, productList: List<Product>) {
+        //显示隐藏
+        detail_con_guige!!.setOnClickListener {
+            if(isSelect){
+                initPwxian(info)
+            }else{
+                initPwyin(info,productList)
+            }
+        }
+        //加入购物物车 id
+        tv_category_addCar!!.setOnClickListener {
+            if(isSelect){
+                //第一次弹出
+                initPwxian(info)
+            }else{
+                //二次点击 弹出
+                initPwyin(info,productList)
+            }
+        }
+
+    }
+
+    //首次点击
+    private fun initPwxian(info: Info) {
+
+        //PopWindow条目布局
+        val join_view: View = LayoutInflater.from(this@DetailInfoActivity).inflate(R.layout.layout_detail_pop, null)
+        tv_shu = join_view.findViewById(R.id.detail_tv_shu)
+        val detail_image_pop :ImageView = join_view.findViewById(R.id.detail_image_pop)
+        val detail_tv_back :TextView = join_view.findViewById(R.id.detail_tv_back)
+        val detail_btn_jia :TextView = join_view.findViewById(R.id.detail_btn_jia)
+        val detail_btn_jian :TextView = join_view.findViewById(R.id.detail_btn_jian)
+        //设置popu
+        popupWindow_addcar = PopupWindow(join_view,GridLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        //找到视图
+        popupWindow_addcar!!.contentView = join_view
+        popupWindow_addcar!!.isClippingEnabled = false
+
+        popupWindow_addcar!!.showAtLocation(mDataBinding.tvCategoryAddCar, Gravity.BOTTOM, 0, 150)
+
+        Glide.with(this@DetailInfoActivity).load(info.list_pic_url).into(detail_image_pop)
+        shu = 1
+
+        val clickListener: ClickListener = ClickListener()
+        detail_btn_jia.setOnClickListener(clickListener)
+        detail_btn_jian.setOnClickListener(clickListener)
+
+        detail_tv_back.setOnClickListener {
+            isSelect = true
+            popupWindow_addcar!!.dismiss()
+        }
+        isSelect = false
+
+    }
+
+    //二次点击
+    private fun initPwyin(info: Info, productList: List<Product>) {
+        popupWindow_addcar!!.dismiss()
+        if (shu <= 0 && popupWindow_addcar ==null) {
+            ToastUtils.s(this@DetailInfoActivity, getString(R.string.tips_shu))
+            return
+        }
+        if (productList.size > 0) {
+            val goodsId = info.id
+            val number = tv_shu?.text.toString()
+            val productid = productList[0].id
+            val map = HashMap<String, String>()
+            map["goodsId"] = goodsId.toString()
+            map["number"] = number
+            map["productId"] = productid.toString()
+            mViewModel.AddCar(map)
+        }
+        val join_view = LayoutInflater.from(this@DetailInfoActivity).inflate(R.layout.layout_detail_pop_ok, null)
+        val popupWindow1 = PopupWindow(join_view, 200, 200)
+        val attributes = window.attributes
+        attributes.alpha = 0.5f
+        window.attributes = attributes
+        popupWindow1.showAtLocation(tv_category_addCar, Gravity.CENTER, 0, 0)
+
+        //两秒自动关闭
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    popupWindow1.dismiss()
+                    val attributes = window.attributes
+                    attributes.alpha = 1f
+                    window.attributes = attributes
+                }
+            }
+        }, 1000, 3000)
+        isSelect = true
+    }
+
+    //TODO 购物车的点击
+     inner class ClickListener : View.OnClickListener {
+        override fun onClick(view: View) {
+            when (view.id) {
+                R.id.detail_btn_jia -> {
+                    shu++
+                    if (shu > 0) {
+                        tv_shu!!.text = shu.toString() + ""
+                    }
+                }
+                R.id.detail_btn_jian -> {
+                    shu--
+                    if (shu > 0) {
+                        tv_shu!!.text = shu.toString() + ""
+                    }
+                }
+            }
+        }
     }
 
     override fun initVariable() {

@@ -114,6 +114,7 @@ class MineLoginActivity(
                     SpUtils.instance!!.setValue("token", token)
                     SpUtils.instance!!.setValue("username", username)
                     SpUtils.instance!!.setValue("uid", it.get(0).userInfo.uid)
+                    Log.e("TAG", "initVM: "+token )
                     ToastUtils.s(this, getString(R.string.tips_login_ok))
                     finish()
                 }

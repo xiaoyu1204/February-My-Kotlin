@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.shop.R
-import com.shop.ui.main.fragment.car.ShopFragment
+import com.shop.ui.main.fragment.car.CarFragment
 import com.shop.ui.main.fragment.me.MineFragment
 import com.shop.ui.main.fragment.topic.TopicFragment
 import com.shop.ui.primary.fragment.home.HomeFragment
@@ -29,7 +29,7 @@ class PrimaryActivity : AppCompatActivity() {
         fragments.add(HomeFragment())
         fragments.add(TopicFragment())
         fragments.add(SortFragment())
-        fragments.add(ShopFragment())
+        fragments.add(CarFragment())
         fragments.add(MineFragment())
 
         //设置适配器
