@@ -68,12 +68,12 @@
                 />
 
             <TextView
-                android:id="@+id/me_head_mark"
+                android:id="@+id/me_head_brithday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/me_head_img"
-                android:text="签名"
+                android:text="生日"
                 android:textSize="@dimen/dp_18"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:textColor="#FFFEFE"

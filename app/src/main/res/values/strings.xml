@@ -16,6 +16,8 @@
     <string name="price_info">元起</string>
     <string name="qian">￥</string>
     <string name="tips_error_goodid">错误的商品id</string>
+    
+    <string name="no_null">不能为空</string>
 
     <!-- me - login -->
     <string name="hint_login_username">账号</string>

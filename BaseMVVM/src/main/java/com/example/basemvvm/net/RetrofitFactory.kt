@@ -2,6 +2,7 @@ package com.shop.net
 
 import android.util.Log
 import com.example.basemvvm.utils.MyMmkv
+import com.example.basemvvm.utils.SpUtils
 import com.shop.app.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -30,9 +31,8 @@ class RetrofitFactory {
             chain -> val request = chain.request()
                 .newBuilder()
                 .addHeader("charset","UTF-8")
-                .addHeader("token", MyMmkv.getString(Constants.token))
+                .addHeader("X-Nideshop-Token",Constants.token)
                 .build()
-
             chain.proceed(request)
         }
 
@@ -51,7 +51,7 @@ class RetrofitFactory {
     private fun initClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(LoggingInterceptor())
-                //.addInterceptor(interceptor)
+                .addInterceptor(interceptor)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .build()
@@ -63,7 +63,6 @@ class RetrofitFactory {
     class LoggingInterceptor:Interceptor{
         override fun intercept(chain: Interceptor.Chain): Response {
             var request = chain.request()
-//            var response =
 //            var responseBody = response.peekBody(Long.MAX_VALUE)
 //            Log.i("responseBody",responseBody.string())
             return chain.proceed(request)

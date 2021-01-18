@@ -109,6 +109,13 @@ class SystemRepository {
     }
 
     /**
+     * 用户信息更新
+     */
+    suspend fun MeUserInfo(map: HashMap<String, String>) = withContext(Dispatchers.IO){
+        serviceApi.MeUserInfo(map)
+    }
+
+    /**
      * 商品购买详情
      */
     suspend fun getDetailInfo(id:Int) = withContext(Dispatchers.IO){

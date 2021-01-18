@@ -110,9 +110,10 @@ class MineLoginActivity(
         mViewModel.melogin.observe(this, Observer {
             if (it != null && it.size > 0) {
                 var token = it.get(0).token
-                if(!TextUtils.isEmpty(token)){
-                    SpUtils.instance!!.setValue("token",token)
-                    SpUtils.instance!!.setValue("uid",it.get(0).userInfo.uid)
+                if (!TextUtils.isEmpty(token)) {
+                    SpUtils.instance!!.setValue("token", token)
+                    SpUtils.instance!!.setValue("username", username)
+                    SpUtils.instance!!.setValue("uid", it.get(0).userInfo.uid)
                     ToastUtils.s(this, getString(R.string.tips_login_ok))
                     finish()
                 }

@@ -11,5 +11,4 @@ import kotlinx.coroutines.launch
 
 class MineViewModel:BaseViewModel(Injection.repository) {
 
-
 }

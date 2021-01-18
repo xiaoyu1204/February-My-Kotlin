@@ -10,6 +10,7 @@ import com.example.basemvvm.model.bean.main.sort.SortDataInfoBottomData
 import com.example.basemvvm.model.bean.main.topic.TopicData
 import com.example.basemvvm.model.bean.me.MeLoginBean
 import com.example.basemvvm.model.bean.me.MeRegisterBean
+import com.example.basemvvm.model.bean.me.MeUserInfoBean
 import com.example.basemvvm.model.bean.tongpao.TongPaoData
 import com.example.myshop.model.bean.shop.sort.SortDataBean
 import com.example.myshop.model.bean.shop.sort.SortNavBean
@@ -72,6 +73,11 @@ interface ServiceApi {
     @FormUrlEncoded
     suspend fun MeRegist(@Field("username")username:String,@Field("password")password:String):BaseResp<MeRegisterBean>
 
+    //用户信息更新
+    @POST("/user/updateUserInfo")
+    @FormUrlEncoded
+    suspend fun MeUserInfo(@FieldMap map: HashMap<String, String>):BaseResp<MeUserInfoBean>
+
     //商品详情  id=1155000
     @GET("goods/detail")
     suspend fun getDetailInfo(@Query("id")id:Int):BaseResp<DetailInfoData>
@@ -79,5 +85,6 @@ interface ServiceApi {
     //商品详情底部数据  id=1155000
     @GET("goods/related")
     suspend fun getDetailInfoBottom(@Query("id")id:Int):BaseResp<DetailInfoBottomData>
+
 
 }
