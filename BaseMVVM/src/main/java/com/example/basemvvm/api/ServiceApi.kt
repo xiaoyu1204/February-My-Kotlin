@@ -1,5 +1,7 @@
 package com.shop.api
 
+import com.example.basemvvm.model.bean.main.DetailInfoBottomData
+import com.example.basemvvm.model.bean.main.DetailInfoData
 import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
@@ -22,10 +24,11 @@ interface ServiceApi {
     @GET("index")
     suspend fun getHome():BaseResp<HomeData2>   // BaseResp抽取的一个bean类的外层结构 homeData当前接口返回的具体
 
-    @POST("auth/refreshToken")  //刷新token
+    //刷新token
+    @POST("auth/refreshToken")
     suspend fun refreshToken(): BaseResp<String>
 
-    //同袍多布局?categoryId=1005007&page=1&size=100
+    //同袍多布局
     @GET("discover/hot.json")
     suspend fun getMore():TongPaoData
 
@@ -41,11 +44,9 @@ interface ServiceApi {
     @GET("goods/hot")
     suspend fun getGoodTop():BaseResp<GoodTopData>
 
-    //https://cdplay.cn/api/catalog/index 分类竖着导航
     @GET("catalog/index")
     suspend fun getSortNav() : SortNavBean
 
-    // https://cdplay.cn/api/  用来请求当前分类的列表数据
     @GET("catalog/current")
     suspend fun getSortData(@Query("id")id : Int) : SortDataBean
 
@@ -53,8 +54,6 @@ interface ServiceApi {
     @GET("goods/category")
     suspend fun getSortDataInfo(@Query("id")id:Int):BaseResp<SortDataInfo>
 
-    //https://cdplay.cn/api/goods/list?page=1&size=100&categoryId=1008002
-    //?page=1&size=100&categoryId=1008002
     //分类右边数据点击详情rlv
     @GET("goods/list?page=1&size=100")
     suspend fun getSortInfoItem(@Query("categoryId")id:Int):BaseResp<SortDataInfoBottomData>
@@ -72,5 +71,13 @@ interface ServiceApi {
     @POST("auth/registernew")
     @FormUrlEncoded
     suspend fun MeRegist(@Field("username")username:String,@Field("password")password:String):BaseResp<MeRegisterBean>
+
+    //商品详情  id=1155000
+    @GET("goods/detail")
+    suspend fun getDetailInfo(@Query("id")id:Int):BaseResp<DetailInfoData>
+
+    //商品详情底部数据  id=1155000
+    @GET("goods/related")
+    suspend fun getDetailInfoBottom(@Query("id")id:Int):BaseResp<DetailInfoBottomData>
 
 }

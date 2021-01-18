@@ -1,12 +1,12 @@
 package com.shop.ui.sort
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
-import com.example.myshop.model.bean.shop.sort.Category
 import com.shop.R
 import com.shop.adapter.main.sort.SortMarqueeAdapter
-import com.shop.adapter.main.sort.SortNavAdapter
 import com.shop.base.BaseFragment
 import com.shop.databinding.FragmentSortBinding
 import com.shop.ui.main.fragment.sort.SortCategoryFragment
@@ -23,25 +23,38 @@ class SortFragment:BaseFragment<SortViewModel,FragmentSortBinding>(R.layout.frag
 
     override fun initView() {
         //禁止滑动
-        mVp_type.setScanScroll(false)
+        sort_vp.setScanScroll(false)
     }
 
     override fun initVM() {
         val fragments = ArrayList<SortCategoryFragment>()
         if(!isAdded)return
-        mViewModel.sortnav.observe(this, Observer {categroy ->
-            for (i  in categroy.indices){
-                var id = categroy.get(i).id
-                var categoryFragment = SortCategoryFragment()
-                var bundle = Bundle()
-                bundle.putInt("id",id)
-                categoryFragment.arguments = bundle
-                fragments.add(categoryFragment)
+        mViewModel.sortnav.observe(this, Observer {
+            if (it != null && it.size > 0) {
+
+                val fragments = ArrayList<SortCategoryFragment>()
+                for (i in it.indices) {
+                    var f = SortCategoryFragment(it.get(i).id)
+                    fragments.add(f)
+                }
+
+                //创建适配器
+                sort_vp!!.adapter = object : FragmentStatePagerAdapter(childFragmentManager) {
+                    override fun getCount(): Int {
+                        return fragments.size
+                    }
+
+                    override fun getItem(position: Int): Fragment {
+                        return fragments[position]
+                    }
+
+                    override fun getPageTitle(position: Int): CharSequence? {
+                        return it[position].name
+                    }
+                }
+                sort_tab!!.setupWithViewPager(sort_vp)
+
             }
-            var sortNavAdapter = SortNavAdapter(childFragmentManager)
-            mVp_type.adapter = sortNavAdapter
-            sortNavAdapter.addList(fragments, categroy as ArrayList<Category>)
-            sort_tab.setupWithViewPager(mVp_type)
         })
         //跑马灯
         initMarque()

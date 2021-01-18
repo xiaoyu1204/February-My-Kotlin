@@ -49,7 +49,7 @@ data class Channel2(
 )
 
 data class Category2(
-    val goodsList: List<Goods>,
+    val goodsList: List<Goods2>,
     val id: Int,
     val name: String
 )

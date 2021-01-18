@@ -16,14 +16,10 @@ import com.example.basemvvm.model.myitem.IItemClick
  * layouts 布局id与界面绑定name的id匹配使用
  */
 //TODO 1.上下文 2.集合 3.布局（也可能是多布局 所以使用轻量级集合） 4.点击事件 （多个点击）
-open abstract class BaseAdapter<D>(
-    //加var相当于public 实例也可以调用这个变量
-    val context: Context,
-    var list: List<D>,
-    val layouts: SparseArray<Int>,
-    var itemClick: IItemClick<D>
-) :
-    RecyclerView.Adapter<BaseAdapter<D>.BaseVH>() {
+open abstract class BaseAdapter<D>
+    (val context: Context, var list:List<D>,
+     val layouts:SparseArray<Int>,
+     var itemClick:IItemClick<D>):RecyclerView.Adapter<BaseAdapter<D>.BaseVH>() {
 
     //TODO 用来初始化创建ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
@@ -34,14 +30,19 @@ open abstract class BaseAdapter<D>(
 
     //TODO item的赋值  {绑定，动态赋值}
     override fun onBindViewHolder(holder: BaseVH, position: Int) {
-        //获取当前条目的id
         var layoutId = getItemViewType(position)
-        //获取layout id 所对应的BR的id
-        val type = layouts.get(layoutId)
+        var type = layouts.get(layoutId)
+
         //界面组件显示数据的绑定
         holder.dataBinding.setVariable(type,list.get(position))
         holder.dataBinding.root.tag = list.get(position)
 
+        //item的动态点击事件
+        holder.dataBinding.root.setOnClickListener {
+            if(itemClick != null){
+                itemClick.itemClick(list.get(position))
+            }
+        }
         bindData(holder.dataBinding,list.get(position),layoutId)
     }
 

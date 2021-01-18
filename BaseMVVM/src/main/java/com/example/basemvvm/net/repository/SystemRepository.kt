@@ -26,7 +26,6 @@ class SystemRepository {
         serviceApi.refreshToken()
     }
 
-
     /**
      * 获取主页数据
      */
@@ -107,6 +106,20 @@ class SystemRepository {
      */
     suspend fun MeRegist(username:String,password:String) = withContext(Dispatchers.IO){
         serviceApi.MeRegist(username,password)
+    }
+
+    /**
+     * 商品购买详情
+     */
+    suspend fun getDetailInfo(id:Int) = withContext(Dispatchers.IO){
+        serviceApi.getDetailInfo(id)
+    }
+
+    /**
+     * 商品购买详情下面
+     */
+    suspend fun getDetailInfoBottom(id:Int) = withContext(Dispatchers.IO){
+        serviceApi.getDetailInfoBottom(id)
     }
 
 }

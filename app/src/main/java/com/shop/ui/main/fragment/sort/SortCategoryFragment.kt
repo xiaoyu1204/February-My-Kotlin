@@ -16,16 +16,11 @@ import com.shop.databinding.SortDataItemBinding
 import com.shop.viewmodel.sort.SortViewModel
 import kotlinx.android.synthetic.main.sort_data_item.*
 
-class SortCategoryFragment : BaseFragment<SortViewModel, SortDataItemBinding>
+class SortCategoryFragment(var Iid:Int) : BaseFragment<SortViewModel, SortDataItemBinding>
     (R.layout.sort_data_item, SortViewModel::class.java){
 
     var list:MutableList<SortDataBean.SubCategory> = mutableListOf()
     var sortcateadapter: SortCategroysAdapter? = null
-
-    //采用伴生对象 companion object==static
-    companion object{
-        val instance : SortCategoryFragment by lazy { SortCategoryFragment() }
-    }
 
     override fun initView() {
         val layoutManager =  GridLayoutManager(activity,3)
@@ -56,16 +51,15 @@ class SortCategoryFragment : BaseFragment<SortViewModel, SortDataItemBinding>
     }
 
     override fun initVM() {
-        mViewModel!!.sortdata.observe(this, Observer {
+        mViewModel!!.sortdata. observe(this, Observer {
             sortcateadapter!!.refreshData(it.subCategoryList)
             mDataBinding.setVariable(BR.SortData,it)
         })
     }
 
     override fun initData() {
-        val id = getArguments()?.getInt("id")
-        if (id != null) {
-            mViewModel.getSortData(id)
+        if (Iid != null) {
+            mViewModel.getSortData(Iid)
         }
     }
 

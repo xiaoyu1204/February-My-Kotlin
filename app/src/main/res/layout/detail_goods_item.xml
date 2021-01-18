@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.basemvvm.model.bean.main.Goods"/>
+        <import type="com.example.basemvvm.model.myitem.IItemClick"/>
+        <variable
+            name="detailgoodsitem"
+            type="Goods" />
+        <variable
+            name="detailgoodsclick"
+            type="IItemClick" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_176"
+        android:layout_margin="@dimen/dp_5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_176"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_category_img"
+                app:imageUrl="@{detailgoodsitem.list_pic_url}"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_100"/>
+
+            <TextView
+                android:id="@+id/tv_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:text="@{detailgoodsitem.name}"
+                style="@style/Home_Text" />
+
+            <TextView
+                android:id="@+id/tv_category_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/qian+detailgoodsitem.retail_price}"
+                android:textColor="#F44336"
+                style="@style/Home_Text"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

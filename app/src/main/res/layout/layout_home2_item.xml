@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.shop.model.bean.home.Category2"/>
+        <variable
+            name="home2_category"
+            type="Category2" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_home_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_10" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRlv_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_5"
+            android:background="#E3E3E3"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+</layout>

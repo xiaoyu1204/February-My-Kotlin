@@ -37,8 +37,7 @@ class SortDataInfoActivity : BaseActivity<SortDataInfoViewModel,ActivitySortData
 
                 val fragments = ArrayList<SortDataInfoFragment>()
                 for (i in it.indices) {
-                    var sortDataInfoFragment =
-                        SortDataInfoFragment(it.get(i).id, it.get(i).name, it.get(i).front_name)
+                    var sortDataInfoFragment = SortDataInfoFragment(it.get(i).id, it.get(i).name, it.get(i).front_name)
                     fragments.add(sortDataInfoFragment)
                 }
 
