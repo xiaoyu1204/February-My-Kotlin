@@ -284,7 +284,6 @@ class DetailInfoActivity : BaseActivity<DetailInfoViewModel, ActivityDetailInfoB
 
             override fun onPageSelected(position: Int) { //停止时
                 currentPos = position
-                Log.e("TAG", "onPageSelected: "+position )
                 updatePage(count)
             }
 

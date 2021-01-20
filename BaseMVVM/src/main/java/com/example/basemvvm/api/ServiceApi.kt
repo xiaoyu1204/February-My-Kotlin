@@ -3,6 +3,7 @@ package com.shop.api
 import com.example.basemvvm.model.bean.main.DetailInfoBottomData
 import com.example.basemvvm.model.bean.main.DetailInfoData
 import com.example.basemvvm.model.bean.main.car.CarAddBean
+import com.example.basemvvm.model.bean.main.car.CarData
 import com.example.basemvvm.model.bean.main.home.BrandData
 import com.example.basemvvm.model.bean.main.home.GoodListData
 import com.example.basemvvm.model.bean.main.home.GoodTopData
@@ -92,5 +93,8 @@ interface ServiceApi {
     @FormUrlEncoded
     suspend fun AddCar(@FieldMap map: HashMap<String, String>):BaseResp<CarAddBean>
 
+    //获取购物车数据
+    @GET("cart/index")
+    suspend fun getCar():BaseResp<CarData>
 
 }

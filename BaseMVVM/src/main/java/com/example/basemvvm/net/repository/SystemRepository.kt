@@ -136,4 +136,11 @@ class SystemRepository {
         serviceApi.AddCar(map)
     }
 
+    /**
+     * 获取购物车列表
+     */
+    suspend fun getCar() = withContext(Dispatchers.IO){
+        serviceApi.getCar()
+    }
+
 }
